@@ -257,6 +257,96 @@
             opacity: 1;
             border-color: var(--accent-color);
         }
+
+        /* Vinyl Record Animation */
+        .vinyl-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+        }
+
+        .vinyl-record {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                #1a1a1a 0%,
+                #1a1a1a 25%,
+                #2a2a2a 25%,
+                #2a2a2a 26%,
+                #1a1a1a 26%,
+                #1a1a1a 28%,
+                #2a2a2a 28%,
+                #2a2a2a 29%,
+                #1a1a1a 29%,
+                #1a1a1a 100%
+            );
+            box-shadow:
+                0 0 0 2px #0a0a0a,
+                inset 0 0 20px rgba(0, 0, 0, 0.8),
+                0 4px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .vinyl-record::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                #ff8c00 0%,
+                #ff8c00 40%,
+                #1a1a1a 40%,
+                #1a1a1a 100%
+            );
+            box-shadow:
+                0 0 0 1px #ff8c00,
+                inset 0 0 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .vinyl-record::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: repeating-conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                transparent 1deg,
+                rgba(255, 255, 255, 0.03) 1deg,
+                rgba(255, 255, 255, 0.03) 2deg
+            );
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .vinyl-record.playing {
+            animation: spin 3s linear infinite;
+        }
+
+        .vinyl-record.paused {
+            animation-play-state: paused;
+        }
+
+        @media (max-width: 767px) {
+            .vinyl-container {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 12px;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-white font-body antialiased">
@@ -296,9 +386,12 @@
 
     <!-- Sticky Audio Player -->
     <div id="stickyPlayer" class="sticky-player" style="display: none;">
+        <div class="vinyl-container">
+            <div id="vinylRecord" class="vinyl-record"></div>
+        </div>
         <div class="mb-3">
-            <h4 id="stickyTrackTitle" class="text-lg font-heading text-accent-orange mb-1">ATTACK FROM ABOVE</h4>
-            <p id="stickyTrackAlbum" class="text-sm text-gray-400">Rumours From Outer Space</p>
+            <h4 id="stickyTrackTitle" class="text-lg font-heading text-accent-orange mb-1 text-center">ATTACK FROM ABOVE</h4>
+            <p id="stickyTrackAlbum" class="text-sm text-gray-400 text-center">Rumours From Outer Space</p>
         </div>
         <audio id="stickyAudioPlayer" controls class="w-full" preload="metadata">
             <source id="stickyAudioSource" src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
@@ -638,6 +731,7 @@
         const stickyAudioSource = document.getElementById('stickyAudioSource');
         const stickyTrackTitle = document.getElementById('stickyTrackTitle');
         const stickyTrackAlbum = document.getElementById('stickyTrackAlbum');
+        const vinylRecord = document.getElementById('vinylRecord');
 
         const trackItems = document.querySelectorAll('.track-item');
         let currentTrackIndex = 0;
@@ -698,16 +792,33 @@
         audioPlayer.addEventListener('play', () => {
             stickyPlayer.style.display = 'block';
             stickyAudioPlayer.play();
+            vinylRecord.classList.add('playing');
+            vinylRecord.classList.remove('paused');
         });
 
-        audioPlayer.addEventListener('pause', () => stickyAudioPlayer.pause());
+        audioPlayer.addEventListener('pause', () => {
+            stickyAudioPlayer.pause();
+            vinylRecord.classList.remove('playing');
+            vinylRecord.classList.add('paused');
+        });
+
         audioPlayer.addEventListener('seeked', () => {
             stickyAudioPlayer.currentTime = audioPlayer.currentTime;
         });
 
         // Sync sticky player with main player
-        stickyAudioPlayer.addEventListener('play', () => audioPlayer.play());
-        stickyAudioPlayer.addEventListener('pause', () => audioPlayer.pause());
+        stickyAudioPlayer.addEventListener('play', () => {
+            audioPlayer.play();
+            vinylRecord.classList.add('playing');
+            vinylRecord.classList.remove('paused');
+        });
+
+        stickyAudioPlayer.addEventListener('pause', () => {
+            audioPlayer.pause();
+            vinylRecord.classList.remove('playing');
+            vinylRecord.classList.add('paused');
+        });
+
         stickyAudioPlayer.addEventListener('seeked', () => {
             audioPlayer.currentTime = stickyAudioPlayer.currentTime;
         });
