@@ -307,45 +307,99 @@
         /* Sticky Audio Player */
         .sticky-player {
             position: fixed;
+            bottom: 30px;
+            right: 30px;
             z-index: 40;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Collapsed state - just the vinyl */
+        .sticky-player.collapsed {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+        }
+
+        .sticky-player.collapsed:hover .vinyl-record {
+            transform: scale(1.1);
+            box-shadow:
+                0 0 0 2px #ff8c00,
+                inset 0 0 20px rgba(0, 0, 0, 0.8),
+                0 4px 25px rgba(255, 140, 0, 0.6);
+        }
+
+        /* Expanded state - full player */
+        .sticky-player.expanded {
+            width: 400px;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 140, 0, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .sticky-player.expanded:hover {
+            border-color: var(--accent-color);
+        }
+
+        /* Player controls - hidden when collapsed */
+        .player-controls {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sticky-player.expanded .player-controls {
+            opacity: 1;
+            max-height: 500px;
+        }
+
+        /* Close button - only visible when expanded */
+        .close-player-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 140, 0, 0.2);
+            border: 1px solid rgba(255, 140, 0, 0.4);
+            color: var(--accent-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
             transition: all 0.3s ease;
         }
 
-        /* Desktop - right side */
-        @media (min-width: 768px) {
-            .sticky-player {
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 350px;
-                border-radius: 12px;
-                padding: 20px;
-            }
+        .sticky-player.expanded .close-player-btn {
+            opacity: 1;
         }
 
-        /* Mobile - bottom */
+        .close-player-btn:hover {
+            background: rgba(255, 140, 0, 0.4);
+            transform: rotate(90deg);
+        }
+
+        /* Mobile adjustments */
         @media (max-width: 767px) {
             .sticky-player {
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                border-radius: 12px 12px 0 0;
-                padding: 16px;
+                bottom: 20px;
+                right: 20px;
             }
-        }
 
-        .sticky-player.minimized {
-            opacity: 0.7;
-        }
+            .sticky-player.collapsed {
+                width: 60px;
+                height: 60px;
+            }
 
-        .sticky-player:hover {
-            opacity: 1;
-            border-color: var(--accent-color);
+            .sticky-player.expanded {
+                width: calc(100vw - 40px);
+                max-width: 350px;
+            }
         }
 
         /* Vinyl Record Animation */
@@ -353,7 +407,17 @@
             position: relative;
             width: 80px;
             height: 80px;
+            flex-shrink: 0;
+        }
+
+        .sticky-player.collapsed .vinyl-container {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .sticky-player.expanded .vinyl-container {
             margin: 0 auto 16px;
+            cursor: default;
         }
 
         .vinyl-record {
@@ -434,7 +498,6 @@
             .vinyl-container {
                 width: 60px;
                 height: 60px;
-                margin: 0 auto 12px;
             }
         }
     </style>
@@ -475,17 +538,29 @@
     </nav>
 
     <!-- Sticky Audio Player -->
-    <div id="stickyPlayer" class="sticky-player" style="display: none;">
-        <div class="vinyl-container">
+    <div id="stickyPlayer" class="sticky-player collapsed" style="display: none;">
+        <!-- Close button (only visible when expanded) -->
+        <button class="close-player-btn" id="closePlayerBtn" aria-label="Collapse player">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <!-- Vinyl record (always visible) -->
+        <div class="vinyl-container" id="vinylContainer">
             <div id="vinylRecord" class="vinyl-record"></div>
         </div>
-        <div class="mb-3">
-            <h4 id="stickyTrackTitle" class="text-lg font-heading text-accent-orange mb-1 text-center">ATTACK FROM ABOVE</h4>
-            <p id="stickyTrackAlbum" class="text-sm text-gray-400 text-center">Rumours From Outer Space</p>
+
+        <!-- Player controls (hidden when collapsed) -->
+        <div class="player-controls">
+            <div class="mb-3">
+                <h4 id="stickyTrackTitle" class="text-lg font-heading text-accent-orange mb-1 text-center">ATTACK FROM ABOVE</h4>
+                <p id="stickyTrackAlbum" class="text-sm text-gray-400 text-center">Rumours From Outer Space</p>
+            </div>
+            <audio id="stickyAudioPlayer" controls class="w-full" preload="metadata">
+                <source id="stickyAudioSource" src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
+            </audio>
         </div>
-        <audio id="stickyAudioPlayer" controls class="w-full" preload="metadata">
-            <source id="stickyAudioSource" src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
     <!-- Intro Section -->
@@ -873,10 +948,27 @@
         const stickyTrackTitle = document.getElementById('stickyTrackTitle');
         const stickyTrackAlbum = document.getElementById('stickyTrackAlbum');
         const vinylRecord = document.getElementById('vinylRecord');
+        const vinylContainer = document.getElementById('vinylContainer');
+        const closePlayerBtn = document.getElementById('closePlayerBtn');
 
         const trackItems = document.querySelectorAll('.track-item');
         let currentTrackIndex = 0;
         let isSyncing = false; // Flag to prevent circular event triggering
+
+        // Player expand/collapse functionality
+        vinylContainer.addEventListener('click', function(e) {
+            // Only expand if collapsed
+            if (stickyPlayer.classList.contains('collapsed')) {
+                stickyPlayer.classList.remove('collapsed');
+                stickyPlayer.classList.add('expanded');
+            }
+        });
+
+        closePlayerBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent vinyl click event
+            stickyPlayer.classList.remove('expanded');
+            stickyPlayer.classList.add('collapsed');
+        });
 
         function playTrack(index) {
             if (index < 0 || index >= trackItems.length) return;
