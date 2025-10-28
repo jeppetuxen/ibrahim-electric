@@ -5,12 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Contact Ibrahim Electric - Booking, management, and press information">
     <title>Contact / Press - IBRAHIM ELECTRIC</title>
+
+    <!-- Google Fonts - Original fonts from ibrahimelectric.com -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Cabin:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Source+Code+Pro:ital,wght@0,300;0,400;0,500;0,700;1,300;1,700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Apply fonts */
+        body {
+            font-family: 'Cabin', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Abel', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero animation */
+        .hero-title {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Contact section animations */
+        .contact-section {
+            animation: fadeInUp 0.6s ease-out both;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Stagger animation delays */
+        .contact-section:nth-child(1) { animation-delay: 0.1s; }
+        .contact-section:nth-child(2) { animation-delay: 0.2s; }
+        .contact-section:nth-child(3) { animation-delay: 0.3s; }
+        .contact-section:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Button animations */
+        .btn-download {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-download:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navigation enhancements */
+        nav a {
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-scrolled {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Email links with hover effect */
+        .email-link {
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            transform: translateX(4px);
+            color: #fff;
+        }
+
+        /* Band member cards */
+        .member-card {
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover {
+            background-color: rgba(31, 41, 55, 0.8);
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="bg-black text-white">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-sm z-50 border-b border-gray-800">
+    <nav id="main-nav" class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-sm z-50 border-b border-gray-800">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <h1 class="text-2xl font-bold tracking-wider">
@@ -45,8 +169,8 @@
     <!-- Hero -->
     <section class="pt-32 pb-12 bg-gradient-to-b from-gray-900 to-black">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">CONTACT / PRESS</h1>
-            <p class="text-xl text-gray-400">Get in touch for bookings, press inquiries, and more</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">CONTACT / PRESS</h1>
+            <p class="text-xl text-gray-400 hero-subtitle">Get in touch for bookings, press inquiries, and more</p>
         </div>
     </section>
 
@@ -61,19 +185,19 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <a href="https://www.dropbox.com/sh/7sw48y2c83b7cr7/AABc56bBcgjwR64-7M_WJxd5a?dl=1"
                            target="_blank"
-                           class="bg-white text-black px-8 py-6 rounded-lg text-center font-bold hover:bg-gray-200 transition transform hover:scale-105">
+                           class="bg-white text-black px-8 py-6 rounded-lg text-center font-bold btn-download">
                             Download English Press (PDF)
                         </a>
                         <a href="https://www.dropbox.com/sh/nlpubzqpij4094u/AACeVLcsoFT5LUA1JCyEdjR7a?dl=1"
                            target="_blank"
-                           class="bg-white text-black px-8 py-6 rounded-lg text-center font-bold hover:bg-gray-200 transition transform hover:scale-105">
+                           class="bg-white text-black px-8 py-6 rounded-lg text-center font-bold btn-download">
                             Download Danish Press (PDF)
                         </a>
                     </div>
                     <div class="mt-6">
                         <a href="https://www.dropbox.com/sh/ex76b390hr7bt78/AAABunYRrhNPsAP2gd13tmCaa?dl=1"
                            target="_blank"
-                           class="block bg-gray-800 text-white px-8 py-4 rounded-lg text-center font-bold hover:bg-gray-700 transition">
+                           class="block bg-gray-800 text-white px-8 py-4 rounded-lg text-center font-bold btn-download">
                             Download Press Photos
                         </a>
                     </div>
@@ -84,26 +208,26 @@
                 <!-- Contact Information -->
                 <div class="space-y-12">
                     <!-- Booking & Management -->
-                    <div class="bg-gray-900 p-8 rounded-lg">
+                    <div class="bg-gray-900 p-8 rounded-lg contact-section">
                         <h2 class="text-3xl font-bold mb-6 text-center">Booking & Management</h2>
                         <div class="space-y-6 text-center">
                             <div>
                                 <h3 class="text-xl font-bold mb-2 text-gray-400">General Contact / Booking</h3>
-                                <a href="mailto:mail@ibrahimelectric.com" class="text-2xl hover:text-gray-300 transition">
+                                <a href="mailto:mail@ibrahimelectric.com" class="text-2xl email-link">
                                     mail@ibrahimelectric.com
                                 </a>
                             </div>
 
                             <div>
                                 <h3 class="text-xl font-bold mb-2 text-gray-400">Management in Spain</h3>
-                                <a href="mailto:ivanpivotti@gmail.com" class="text-2xl hover:text-gray-300 transition">
+                                <a href="mailto:ivanpivotti@gmail.com" class="text-2xl email-link">
                                     ivanpivotti@gmail.com
                                 </a>
                             </div>
 
                             <div>
                                 <h3 class="text-xl font-bold mb-2 text-gray-400">Management Outside Denmark and Spain</h3>
-                                <a href="mailto:kjellkalleklev1@gmail.com" class="text-2xl hover:text-gray-300 transition">
+                                <a href="mailto:kjellkalleklev1@gmail.com" class="text-2xl email-link">
                                     kjellkalleklev1@gmail.com
                                 </a>
                             </div>
@@ -111,46 +235,46 @@
                     </div>
 
                     <!-- Band Members -->
-                    <div class="bg-gray-900 p-8 rounded-lg">
+                    <div class="bg-gray-900 p-8 rounded-lg contact-section">
                         <h2 class="text-3xl font-bold mb-6 text-center">The Band</h2>
                         <div class="space-y-8">
                             <!-- Niclas Knudsen -->
-                            <div class="text-center pb-6 border-b border-gray-800">
+                            <div class="text-center pb-6 border-b border-gray-800 member-card">
                                 <h3 class="text-2xl font-bold mb-3">Niclas Knudsen</h3>
                                 <p class="text-gray-400 mb-3">Guitar</p>
                                 <div class="space-y-2">
-                                    <a href="mailto:mail@niclasknudsen.com" class="block text-lg hover:text-gray-300 transition">
+                                    <a href="mailto:mail@niclasknudsen.com" class="block text-lg email-link">
                                         mail@niclasknudsen.com
                                     </a>
-                                    <a href="http://niclasknudsen.com/" target="_blank" class="block text-lg hover:text-gray-300 transition">
+                                    <a href="http://niclasknudsen.com/" target="_blank" class="block text-lg email-link">
                                         www.niclasknudsen.com
                                     </a>
                                 </div>
                             </div>
 
                             <!-- Stefan Pasborg -->
-                            <div class="text-center pb-6 border-b border-gray-800">
+                            <div class="text-center pb-6 border-b border-gray-800 member-card">
                                 <h3 class="text-2xl font-bold mb-3">Stefan Pasborg</h3>
                                 <p class="text-gray-400 mb-3">Drums</p>
                                 <div class="space-y-2">
-                                    <a href="mailto:stefan@pasborg.dk" class="block text-lg hover:text-gray-300 transition">
+                                    <a href="mailto:stefan@pasborg.dk" class="block text-lg email-link">
                                         stefan@pasborg.dk
                                     </a>
-                                    <a href="http://www.pasborg.dk/" target="_blank" class="block text-lg hover:text-gray-300 transition">
+                                    <a href="http://www.pasborg.dk/" target="_blank" class="block text-lg email-link">
                                         www.pasborg.dk
                                     </a>
                                 </div>
                             </div>
 
                             <!-- Jeppe Tuxen -->
-                            <div class="text-center">
+                            <div class="text-center member-card">
                                 <h3 class="text-2xl font-bold mb-3">Jeppe Tuxen</h3>
                                 <p class="text-gray-400 mb-3">Hammond B3</p>
                                 <div class="space-y-2">
-                                    <a href="mailto:jeppetuxen@gmail.com" class="block text-lg hover:text-gray-300 transition">
+                                    <a href="mailto:jeppetuxen@gmail.com" class="block text-lg email-link">
                                         jeppetuxen@gmail.com
                                     </a>
-                                    <a href="http://www.jeppetuxen.com/" target="_blank" class="block text-lg hover:text-gray-300 transition">
+                                    <a href="http://www.jeppetuxen.com/" target="_blank" class="block text-lg email-link">
                                         www.jeppetuxen.com
                                     </a>
                                 </div>
@@ -189,6 +313,16 @@
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        });
+
+        // Enhanced navigation on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
         });
     </script>
 </body>
