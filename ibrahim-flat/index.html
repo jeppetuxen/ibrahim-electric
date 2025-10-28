@@ -121,7 +121,47 @@
         }
 
         .accent-glow:hover {
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(255, 140, 0, 0.15);
+        }
+
+        /* Modern gradient effects */
+        .gradient-text {
+            background: linear-gradient(135deg, #FF8C00 0%, #FFA500 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Enhanced buttons */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-modern:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Glassmorphism effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Site title - original styling */
@@ -401,14 +441,15 @@
     <!-- Intro Section -->
     <section id="intro" class="relative min-h-screen flex items-center justify-center pt-20">
         <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10"></div>
             <img src="images/_OFF9682bw.jpg" alt="Ibrahim Electric" class="w-full h-full object-cover opacity-40 transition-opacity duration-1000">
         </div>
         <div class="relative z-10 container mx-auto px-6 text-center">
             <blockquote class="text-2xl md:text-4xl lg:text-5xl font-heading font-light leading-relaxed max-w-5xl mx-auto">
-                <p class="mb-6 animate-fade-in-up opacity-0">"BETTER THAN VIAGRA" - Information, DK</p>
-                <p class="mb-6 animate-fade-in-up opacity-0 delay-100">"BIG, INTERSTELLAR FUN" - Downbeat Magazine, USA</p>
-                <p class="mb-6 animate-fade-in-up opacity-0 delay-200">"FASTER INTO YOUR BLOOD THAN A GANGES PARASITE" – NYC Jazz Record, USA</p>
-                <p class="animate-fade-in-up opacity-0 delay-300">"CAN YOU SAY 'INVENTIVE'? I KNOW THESE GUYS CAN" - Jazz Times, Canada</p>
+                <p class="mb-6 animate-fade-in-up opacity-0 hover:text-accent-orange transition-colors duration-300">"BETTER THAN VIAGRA" <span class="text-accent-orange">- Information, DK</span></p>
+                <p class="mb-6 animate-fade-in-up opacity-0 delay-100 hover:text-accent-orange transition-colors duration-300">"BIG, INTERSTELLAR FUN" <span class="text-accent-orange">- Downbeat Magazine, USA</span></p>
+                <p class="mb-6 animate-fade-in-up opacity-0 delay-200 hover:text-accent-orange transition-colors duration-300">"FASTER INTO YOUR BLOOD THAN A GANGES PARASITE" <span class="text-accent-orange">– NYC Jazz Record, USA</span></p>
+                <p class="animate-fade-in-up opacity-0 delay-300 hover:text-accent-orange transition-colors duration-300">"CAN YOU SAY 'INVENTIVE'? I KNOW THESE GUYS CAN" <span class="text-accent-orange">- Jazz Times, Canada</span></p>
             </blockquote>
         </div>
     </section>
@@ -442,7 +483,9 @@
                     </div>
                 </div>
 
-                <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">We are Ibrahim Electric</h2>
+                <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">
+                    <span class="gradient-text">We are Ibrahim Electric</span>
+                </h2>
 
                 <div class="max-w-4xl mx-auto space-y-6 text-lg text-gray-300 leading-relaxed">
                     <p class="hover:text-white transition-colors duration-300">During the last couple of years IBRAHIM ELECTRIC has been one of the most popular European jazz groups... These 3 personal instrumentalists have - besides the popularity with this group - made a name for themselves as some of the most striking on their respective instruments in Scandinavia.</p>
@@ -487,7 +530,9 @@
         </div>
         <div class="relative z-10 container mx-auto px-6">
             <div class="max-w-4xl mx-auto bg-black bg-opacity-90 p-8 md:p-12 rounded-xl shadow-2xl backdrop-blur-sm">
-                <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">Music</h2>
+                <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">
+                    <span class="gradient-text">Music</span>
+                </h2>
 
                 <!-- Audio Player -->
                 <div class="bg-gray-900 p-8 rounded-lg border border-gray-800 mb-8">
@@ -645,11 +690,13 @@
     <!-- Live Section -->
     <section id="live" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-6xl font-heading mb-8 tracking-wide">LIVE</h2>
+            <h2 class="text-4xl md:text-6xl font-heading mb-8 tracking-wide">
+                <span class="gradient-text">LIVE</span>
+            </h2>
             <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
                 Experience the explosive energy of Ibrahim Electric live! Check out our upcoming tour dates and past performances.
             </p>
-            <a href="livetour.html" class="inline-block bg-accent-orange text-white px-12 py-4 rounded-full text-lg font-bold hover:bg-accent-amber transition-all duration-300 hover:scale-110 hover:shadow-2xl">
+            <a href="livetour.html" class="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-12 py-4 rounded-full text-lg font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl relative z-10">
                 View Tour Dates
             </a>
         </div>

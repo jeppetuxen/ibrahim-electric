@@ -177,6 +177,39 @@
         .site-title a:hover {
             opacity: 0.8;
         }
+
+        /* Modern gradient effects */
+        .gradient-text {
+            background: linear-gradient(135deg, #FF8C00 0%, #FFA500 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Enhanced buttons */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-modern:hover::before {
+            width: 300px;
+            height: 300px;
+        }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -217,7 +250,9 @@
     <!-- Hero -->
     <section class="pt-32 pb-12 bg-gradient-to-b from-gray-900 to-black">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">LIVE TOUR DATES</h1>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">
+                <span class="gradient-text">LIVE TOUR DATES</span>
+            </h1>
             <p class="text-xl text-gray-400 hero-subtitle">Experience the explosive energy of Ibrahim Electric</p>
         </div>
     </section>
@@ -226,6 +261,86 @@
     <section class="py-12 bg-black">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
+
+                <!-- Upcoming Shows - Highlighted Section -->
+                <div class="mb-16">
+                    <div class="bg-gradient-to-r from-accent-orange to-accent-amber p-1 rounded-lg mb-8">
+                        <div class="bg-black p-6 rounded-lg">
+                            <h2 class="text-4xl font-bold text-center text-white">UPCOMING SHOWS</h2>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-lg tour-card border-2 border-accent-orange shadow-2xl">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <div class="text-5xl font-bold text-accent-orange date-number">25</div>
+                                        <div>
+                                            <div class="text-sm text-accent-orange uppercase font-bold tracking-wider">April 2025</div>
+                                            <h3 class="text-2xl font-bold">JIVE - 40 Year Celebration</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 ml-20 mb-2"><strong>Bygningen</strong> - Vejle, Denmark</p>
+                                    <p class="text-gray-400 ml-20 text-sm">Doors: 20:00 (8:00 PM)</p>
+                                </div>
+                                <div>
+                                    <a href="https://www.billetsalg.dk/Event/Ibrahim%20Electric/7611" target="_blank"
+                                       class="inline-block bg-accent-orange hover:bg-accent-amber text-white px-6 py-3 rounded-lg font-bold transition-all hover:scale-105">
+                                        Get Tickets
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-lg tour-card border-2 border-accent-orange shadow-2xl">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <div class="text-5xl font-bold text-accent-orange date-number">26</div>
+                                        <div>
+                                            <div class="text-sm text-accent-orange uppercase font-bold tracking-wider">June 2025</div>
+                                            <h3 class="text-2xl font-bold">Festival Lent - JazzLent</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-300 ml-20 mb-2"><strong>Minoriti - LGM Auditorium</strong> - Maribor, Slovenia</p>
+                                    <p class="text-gray-400 ml-20 text-sm">Tickets: €16-19 (€5 student discount)</p>
+                                </div>
+                                <div>
+                                    <a href="https://nd-mb.si/en/dogodek/ibrahim-electric/" target="_blank"
+                                       class="inline-block bg-accent-orange hover:bg-accent-amber text-white px-6 py-3 rounded-lg font-bold transition-all hover:scale-105">
+                                        Get Tickets
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2024 Tour Dates -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold mb-8 pb-4 border-b-2 border-accent-orange section-title">2024</h2>
+                    <div class="space-y-6">
+                        <div class="bg-gray-900 p-6 rounded-lg tour-card">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-4 mb-2">
+                                        <div class="text-3xl font-bold text-gray-400 date-number">20</div>
+                                        <div>
+                                            <div class="text-sm text-gray-400 uppercase">September 2024</div>
+                                            <h3 class="text-xl font-bold">Tøjhuset - Fredericias Livescene</h3>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-400 ml-16">Fredericia, Denmark</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Shows Header -->
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-500 uppercase tracking-wider">Past Shows</h2>
+                </div>
 
                 <!-- 2022 Tour Dates -->
                 <div class="mb-16">

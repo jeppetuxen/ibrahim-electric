@@ -191,6 +191,43 @@
         .site-title a:hover {
             opacity: 0.8;
         }
+
+        /* Modern gradient effects */
+        .gradient-text {
+            background: linear-gradient(135deg, #FF8C00 0%, #FFA500 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Enhanced buttons */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-modern:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .accent-glow:hover {
+            box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(255, 140, 0, 0.15);
+        }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -231,7 +268,9 @@
     <!-- Hero -->
     <section class="pt-32 pb-12 bg-gradient-to-b from-gray-900 to-black">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">CONTACT / PRESS</h1>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">
+                <span class="gradient-text">CONTACT / PRESS</span>
+            </h1>
             <p class="text-xl text-gray-400 hero-subtitle">Get in touch for bookings, press inquiries, and more</p>
         </div>
     </section>
@@ -242,25 +281,25 @@
             <div class="max-w-4xl mx-auto">
 
                 <!-- Press Downloads -->
-                <div class="bg-gray-900 p-8 rounded-lg mb-12">
-                    <h2 class="text-3xl font-bold mb-8 text-center">Press Materials</h2>
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-lg mb-12 border border-gray-700 shadow-2xl">
+                    <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Press Materials</h2>
                     <div class="grid md:grid-cols-2 gap-6">
                         <a href="https://www.dropbox.com/sh/7sw48y2c83b7cr7/AABc56bBcgjwR64-7M_WJxd5a?dl=1"
                            target="_blank"
-                           class="bg-white text-black px-8 py-6 rounded-lg text-center font-bold btn-download">
+                           class="bg-gradient-to-r from-accent-orange to-accent-amber text-white px-8 py-6 rounded-lg text-center font-bold btn-modern hover:scale-105 relative z-10">
                             Download English Press (PDF)
                         </a>
                         <a href="https://www.dropbox.com/sh/nlpubzqpij4094u/AACeVLcsoFT5LUA1JCyEdjR7a?dl=1"
                            target="_blank"
-                           class="bg-white text-black px-8 py-6 rounded-lg text-center font-bold btn-download">
+                           class="bg-gradient-to-r from-accent-orange to-accent-amber text-white px-8 py-6 rounded-lg text-center font-bold btn-modern hover:scale-105 relative z-10">
                             Download Danish Press (PDF)
                         </a>
                     </div>
                     <div class="mt-6">
                         <a href="https://www.dropbox.com/sh/ex76b390hr7bt78/AAABunYRrhNPsAP2gd13tmCaa?dl=1"
                            target="_blank"
-                           class="block bg-gray-800 text-white px-8 py-4 rounded-lg text-center font-bold btn-download">
-                            Download Press Photos
+                           class="block bg-gradient-to-r from-gray-700 to-gray-800 text-white px-8 py-4 rounded-lg text-center font-bold btn-modern hover:scale-105 border border-accent-orange relative z-10">
+                            📸 Download Press Photos
                         </a>
                     </div>
                 </div>
