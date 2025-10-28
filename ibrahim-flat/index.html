@@ -34,6 +34,7 @@
         :root {
             --accent-color: #FF8C00;
             --accent-glow: rgba(255, 140, 0, 0.3);
+            --title-red: #DC143C;
         }
         @keyframes fadeInUp {
             from {
@@ -130,7 +131,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <h1 class="text-2xl font-heading tracking-[0.3em] animate-slide-in-right">
-                    <a href="index.html" class="hover:text-accent-orange transition-colors">IBRAHIM ELECTRIC</a>
+                    <a href="index.html" class="hover:text-[#DC143C] transition-colors">IBRAHIM ELECTRIC</a>
                 </h1>
                 <div class="hidden md:flex space-x-8 font-medium">
                     <a href="#intro" class="hover:text-gray-300 hover:scale-110 inline-block">Home</a>
@@ -226,51 +227,154 @@
             <div class="max-w-4xl mx-auto bg-black bg-opacity-90 p-8 md:p-12 rounded-xl shadow-2xl backdrop-blur-sm">
                 <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">Music</h2>
 
-                <div class="space-y-8">
-                    <!-- Track 1 -->
-                    <div class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange accent-glow">
-                        <h3 class="text-2xl font-heading mb-2 tracking-wide">ATTACK FROM ABOVE</h3>
-                        <p class="text-gray-400 mb-4 font-medium">Track from the album 'Rumours From Outer Space'</p>
-                        <audio controls class="w-full hover:scale-[1.01] transition-transform">
-                            <source src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+                <!-- Audio Player -->
+                <div class="bg-gray-900 p-8 rounded-lg border border-gray-800 mb-8">
+                    <div class="mb-6">
+                        <h3 id="currentTrackTitle" class="text-3xl font-heading mb-2 tracking-wide text-accent-orange">ATTACK FROM ABOVE</h3>
+                        <p id="currentTrackAlbum" class="text-gray-400 font-medium">Rumours From Outer Space</p>
                     </div>
+                    <audio id="audioPlayer" controls class="w-full" preload="metadata">
+                        <source id="audioSource" src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
 
-                    <!-- Track 2 -->
-                    <div class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange accent-glow">
-                        <h3 class="text-2xl font-heading mb-2 tracking-wide">BIG BOSS</h3>
-                        <p class="text-gray-400 mb-4 font-medium">Track from the album 'Rumours From Outer Space'</p>
-                        <audio controls class="w-full hover:scale-[1.01] transition-transform">
-                            <source src="audio/02+BIG+BOSS.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-
-                    <!-- Additional Tracks -->
-                    <details class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange accent-glow">
-                        <summary class="text-xl font-heading cursor-pointer hover:text-gray-300 tracking-wide">More Tracks ▼</summary>
-                        <div class="mt-6 space-y-6">
-                            <div class="border-t border-gray-800 pt-6">
-                                <h3 class="text-xl font-heading mb-2 tracking-wide">BELZEBUP</h3>
-                                <audio controls class="w-full">
-                                    <source src="audio/02+BELZEBUP.mp3" type="audio/mpeg">
-                                </audio>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-heading mb-2 tracking-wide">ABSINTHE</h3>
-                                <audio controls class="w-full">
-                                    <source src="audio/07+ABSINTHE.mp3" type="audio/mpeg">
-                                </audio>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-heading mb-2 tracking-wide">ENDANGERED BEAT</h3>
-                                <audio controls class="w-full">
-                                    <source src="audio/01+ENDANGERED+BEAT.mp3" type="audio/mpeg">
-                                </audio>
+                <!-- Track List -->
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-xl font-heading mb-4 text-gray-300 tracking-wide">Select a Track:</h4>
+                    <div class="space-y-2">
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-accent-orange"
+                             data-src="audio/01+ATTACK+FROM+ABOVE.mp3"
+                             data-title="ATTACK FROM ABOVE"
+                             data-album="Rumours From Outer Space">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">ATTACK FROM ABOVE</span>
+                                <svg class="w-5 h-5 playing-icon text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
                             </div>
                         </div>
-                    </details>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/02+BIG+BOSS.mp3"
+                             data-title="BIG BOSS"
+                             data-album="Rumours From Outer Space">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">BIG BOSS</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/02+BELZEBUP.mp3"
+                             data-title="BELZEBUP"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">BELZEBUP</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/07+ABSINTHE.mp3"
+                             data-title="ABSINTHE"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">ABSINTHE</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/01+ENDANGERED+BEAT.mp3"
+                             data-title="ENDANGERED BEAT"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">ENDANGERED BEAT</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/01+Funkorific+1.mp3"
+                             data-title="FUNKORIFIC"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">FUNKORIFIC</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/02+DER+ALTE+DAS+BOOT.mp3"
+                             data-title="DER ALTE DAS BOOT"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">DER ALTE DAS BOOT</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/02+YAMSHALA.mp3"
+                             data-title="YAMSHALA"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">YAMSHALA</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/07+FELA.mp3"
+                             data-title="FELA"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">FELA</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/10+BORAT.mp3"
+                             data-title="BORAT"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">BORAT</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="track-item bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 border-transparent hover:border-accent-orange"
+                             data-src="audio/10+Partyman.mp3"
+                             data-title="PARTYMAN"
+                             data-album="Various Tracks">
+                            <div class="flex items-center justify-between">
+                                <span class="font-heading tracking-wide">PARTYMAN</span>
+                                <svg class="w-5 h-5 playing-icon hidden text-accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -338,6 +442,41 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Audio Player Track Selection
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource = document.getElementById('audioSource');
+        const currentTrackTitle = document.getElementById('currentTrackTitle');
+        const currentTrackAlbum = document.getElementById('currentTrackAlbum');
+        const trackItems = document.querySelectorAll('.track-item');
+
+        trackItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const src = this.dataset.src;
+                const title = this.dataset.title;
+                const album = this.dataset.album;
+
+                // Update audio source
+                audioSource.src = src;
+                audioPlayer.load();
+                audioPlayer.play();
+
+                // Update track info
+                currentTrackTitle.textContent = title;
+                currentTrackAlbum.textContent = album;
+
+                // Update active state
+                trackItems.forEach(t => {
+                    t.classList.remove('border-accent-orange');
+                    t.classList.add('border-transparent');
+                    t.querySelector('.playing-icon').classList.add('hidden');
+                });
+
+                this.classList.remove('border-transparent');
+                this.classList.add('border-accent-orange');
+                this.querySelector('.playing-icon').classList.remove('hidden');
             });
         });
     </script>
