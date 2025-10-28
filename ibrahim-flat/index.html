@@ -122,6 +122,29 @@
         .accent-glow:hover {
             box-shadow: 0 0 20px var(--accent-glow);
         }
+
+        /* Site title - original styling */
+        .site-title {
+            font-family: 'Cabin', sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+            font-style: normal;
+            color: #f75d59;
+            margin: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .site-title a {
+            color: #f75d59;
+            transition: opacity 0.3s ease;
+        }
+
+        .site-title a:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body class="bg-black text-white font-body antialiased">
@@ -130,8 +153,8 @@
     <nav id="main-nav" class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-sm z-50 border-b border-gray-800 transition-all duration-300">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <h1 class="text-2xl font-heading tracking-[0.3em] animate-slide-in-right">
-                    <a href="index.html" class="hover:text-[#DC143C] transition-colors">IBRAHIM ELECTRIC</a>
+                <h1 class="site-title">
+                    <a href="index.html">IBRAHIM ELECTRIC</a>
                 </h1>
                 <div class="hidden md:flex space-x-8 font-medium">
                     <a href="#intro" class="hover:text-gray-300 hover:scale-110 inline-block">Home</a>
