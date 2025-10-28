@@ -379,9 +379,50 @@
             text-overflow: ellipsis;
         }
 
-        /* Compact audio controls */
-        .sticky-player audio {
+        /* Custom control buttons */
+        .control-btn, .control-btn-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 140, 0, 0.1);
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .control-btn {
+            width: 32px;
             height: 32px;
+        }
+
+        .control-btn-large {
+            width: 40px;
+            height: 40px;
+        }
+
+        .control-btn:hover, .control-btn-large:hover {
+            background: rgba(255, 140, 0, 0.3);
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .control-btn:active, .control-btn-large:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 767px) {
+            .control-btn {
+                width: 28px;
+                height: 28px;
+            }
+
+            .control-btn-large {
+                width: 36px;
+                height: 36px;
+            }
         }
 
         /* Close button - only visible when expanded */
@@ -595,7 +636,36 @@
             <div class="player-track-info">
                 <h4 id="stickyTrackTitle" class="font-heading text-accent-orange">ATTACK FROM ABOVE</h4>
             </div>
-            <audio id="stickyAudioPlayer" controls class="w-full" preload="metadata">
+
+            <!-- Custom Control Buttons -->
+            <div class="flex items-center gap-2">
+                <!-- Previous Button -->
+                <button id="prevBtn" class="control-btn" aria-label="Previous track">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
+                    </svg>
+                </button>
+
+                <!-- Play/Pause Button -->
+                <button id="playPauseBtn" class="control-btn-large" aria-label="Play/Pause">
+                    <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                    </svg>
+                    <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5.5 3.5A1.5 1.5 0 017 2h1.5a1.5 1.5 0 011.5 1.5v13a1.5 1.5 0 01-1.5 1.5H7a1.5 1.5 0 01-1.5-1.5v-13zm7.5 0A1.5 1.5 0 0114.5 2H16a1.5 1.5 0 011.5 1.5v13a1.5 1.5 0 01-1.5 1.5h-1.5a1.5 1.5 0 01-1.5-1.5v-13z"/>
+                    </svg>
+                </button>
+
+                <!-- Next Button -->
+                <button id="nextBtn" class="control-btn" aria-label="Next track">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Hidden audio element -->
+            <audio id="stickyAudioPlayer" class="hidden" preload="metadata">
                 <source id="stickyAudioSource" src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
             </audio>
         </div>
@@ -988,6 +1058,13 @@
         const vinylContainer = document.getElementById('vinylContainer');
         const closePlayerBtn = document.getElementById('closePlayerBtn');
 
+        // Control buttons
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
         const trackItems = document.querySelectorAll('.track-item');
         let currentTrackIndex = 0;
         let isSyncing = false; // Flag to prevent circular event triggering
@@ -1006,6 +1083,48 @@
             stickyPlayer.classList.remove('expanded');
             stickyPlayer.classList.add('collapsed');
         });
+
+        // Play/Pause button
+        playPauseBtn.addEventListener('click', function() {
+            if (stickyAudioPlayer.paused) {
+                stickyAudioPlayer.play();
+            } else {
+                stickyAudioPlayer.pause();
+            }
+        });
+
+        // Previous track button
+        prevBtn.addEventListener('click', function() {
+            const prevIndex = currentTrackIndex - 1;
+            if (prevIndex >= 0) {
+                playTrack(prevIndex);
+            } else {
+                // Loop to last track
+                playTrack(trackItems.length - 1);
+            }
+        });
+
+        // Next track button
+        nextBtn.addEventListener('click', function() {
+            const nextIndex = currentTrackIndex + 1;
+            if (nextIndex < trackItems.length) {
+                playTrack(nextIndex);
+            } else {
+                // Loop back to first track
+                playTrack(0);
+            }
+        });
+
+        // Update play/pause icon based on player state
+        function updatePlayPauseIcon() {
+            if (stickyAudioPlayer.paused) {
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            } else {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }
+        }
 
         function playTrack(index) {
             if (index < 0 || index >= trackItems.length) return;
@@ -1060,6 +1179,7 @@
             stickyAudioPlayer.play().catch(() => {}); // Catch any play errors
             vinylRecord.classList.add('playing');
             vinylRecord.classList.remove('paused');
+            updatePlayPauseIcon();
 
             setTimeout(() => { isSyncing = false; }, 100);
         });
@@ -1071,6 +1191,7 @@
             stickyAudioPlayer.pause();
             vinylRecord.classList.remove('playing');
             vinylRecord.classList.add('paused');
+            updatePlayPauseIcon();
 
             setTimeout(() => { isSyncing = false; }, 100);
         });
@@ -1089,6 +1210,7 @@
             audioPlayer.play().catch(() => {}); // Catch any play errors
             vinylRecord.classList.add('playing');
             vinylRecord.classList.remove('paused');
+            updatePlayPauseIcon();
 
             setTimeout(() => { isSyncing = false; }, 100);
         });
@@ -1100,6 +1222,7 @@
             audioPlayer.pause();
             vinylRecord.classList.remove('playing');
             vinylRecord.classList.add('paused');
+            updatePlayPauseIcon();
 
             setTimeout(() => { isSyncing = false; }, 100);
         });
