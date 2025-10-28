@@ -149,12 +149,12 @@
             </div>
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-4 animate-fade-in">
-                <a href="#intro" class="block hover:text-gray-300 hover:translate-x-2 inline-block">Home</a>
-                <a href="#band" class="block hover:text-gray-300 hover:translate-x-2 inline-block">Band</a>
-                <a href="#music" class="block hover:text-gray-300 hover:translate-x-2 inline-block">Music</a>
-                <a href="#live" class="block hover:text-gray-300 hover:translate-x-2 inline-block">Live</a>
-                <a href="livetour.html" class="block hover:text-gray-300 hover:translate-x-2 inline-block">Tour Dates</a>
-                <a href="contact.html" class="block hover:text-gray-300 hover:translate-x-2 inline-block">Contact</a>
+                <a href="#intro" class="block hover:text-gray-300 transition-transform hover:translate-x-2">Home</a>
+                <a href="#band" class="block hover:text-gray-300 transition-transform hover:translate-x-2">Band</a>
+                <a href="#music" class="block hover:text-gray-300 transition-transform hover:translate-x-2">Music</a>
+                <a href="#live" class="block hover:text-gray-300 transition-transform hover:translate-x-2">Live</a>
+                <a href="livetour.html" class="block hover:text-gray-300 transition-transform hover:translate-x-2">Tour Dates</a>
+                <a href="contact.html" class="block hover:text-gray-300 transition-transform hover:translate-x-2">Contact</a>
             </div>
         </div>
     </nav>
@@ -451,33 +451,54 @@
         const currentTrackTitle = document.getElementById('currentTrackTitle');
         const currentTrackAlbum = document.getElementById('currentTrackAlbum');
         const trackItems = document.querySelectorAll('.track-item');
+        let currentTrackIndex = 0;
 
-        trackItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const src = this.dataset.src;
-                const title = this.dataset.title;
-                const album = this.dataset.album;
+        function playTrack(index) {
+            if (index < 0 || index >= trackItems.length) return;
 
-                // Update audio source
-                audioSource.src = src;
-                audioPlayer.load();
-                audioPlayer.play();
+            const item = trackItems[index];
+            const src = item.dataset.src;
+            const title = item.dataset.title;
+            const album = item.dataset.album;
 
-                // Update track info
-                currentTrackTitle.textContent = title;
-                currentTrackAlbum.textContent = album;
+            // Update audio source
+            audioSource.src = src;
+            audioPlayer.load();
+            audioPlayer.play();
 
-                // Update active state
-                trackItems.forEach(t => {
-                    t.classList.remove('border-accent-orange');
-                    t.classList.add('border-transparent');
-                    t.querySelector('.playing-icon').classList.add('hidden');
-                });
+            // Update track info
+            currentTrackTitle.textContent = title;
+            currentTrackAlbum.textContent = album;
 
-                this.classList.remove('border-transparent');
-                this.classList.add('border-accent-orange');
-                this.querySelector('.playing-icon').classList.remove('hidden');
+            // Update active state
+            trackItems.forEach(t => {
+                t.classList.remove('border-accent-orange');
+                t.classList.add('border-transparent');
+                t.querySelector('.playing-icon').classList.add('hidden');
             });
+
+            item.classList.remove('border-transparent');
+            item.classList.add('border-accent-orange');
+            item.querySelector('.playing-icon').classList.remove('hidden');
+
+            currentTrackIndex = index;
+        }
+
+        trackItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                playTrack(index);
+            });
+        });
+
+        // Autoplay next track when current track ends
+        audioPlayer.addEventListener('ended', function() {
+            const nextIndex = currentTrackIndex + 1;
+            if (nextIndex < trackItems.length) {
+                playTrack(nextIndex);
+            } else {
+                // Loop back to first track
+                playTrack(0);
+            }
         });
     </script>
 </body>
