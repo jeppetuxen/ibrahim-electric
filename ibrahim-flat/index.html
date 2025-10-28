@@ -735,16 +735,7 @@
 
         const trackItems = document.querySelectorAll('.track-item');
         let currentTrackIndex = 0;
-        let isPlaying = false;
-
-        function syncPlayers(sourcePlayer, targetPlayer) {
-            targetPlayer.currentTime = sourcePlayer.currentTime;
-            if (!sourcePlayer.paused) {
-                targetPlayer.play();
-            } else {
-                targetPlayer.pause();
-            }
-        }
+        let isSyncing = false; // Flag to prevent circular event triggering
 
         function playTrack(index) {
             if (index < 0 || index >= trackItems.length) return;
@@ -754,6 +745,10 @@
             const title = item.dataset.title;
             const album = item.dataset.album;
 
+            // Pause both players first to prevent multiple instances
+            audioPlayer.pause();
+            stickyAudioPlayer.pause();
+
             // Update both audio players
             audioSource.src = src;
             stickyAudioSource.src = src;
@@ -761,8 +756,8 @@
             audioPlayer.load();
             stickyAudioPlayer.load();
 
+            // Only play the main player - it will trigger the sticky player via event listener
             audioPlayer.play();
-            stickyAudioPlayer.play();
 
             // Update track info in both places
             currentTrackTitle.textContent = title;
@@ -772,7 +767,6 @@
 
             // Show sticky player when playing
             stickyPlayer.style.display = 'block';
-            isPlaying = true;
 
             // Update active state
             trackItems.forEach(t => {
@@ -790,37 +784,61 @@
 
         // Sync main player with sticky player
         audioPlayer.addEventListener('play', () => {
+            if (isSyncing) return;
+            isSyncing = true;
+
             stickyPlayer.style.display = 'block';
-            stickyAudioPlayer.play();
+            stickyAudioPlayer.play().catch(() => {}); // Catch any play errors
             vinylRecord.classList.add('playing');
             vinylRecord.classList.remove('paused');
+
+            setTimeout(() => { isSyncing = false; }, 100);
         });
 
         audioPlayer.addEventListener('pause', () => {
+            if (isSyncing) return;
+            isSyncing = true;
+
             stickyAudioPlayer.pause();
             vinylRecord.classList.remove('playing');
             vinylRecord.classList.add('paused');
+
+            setTimeout(() => { isSyncing = false; }, 100);
         });
 
         audioPlayer.addEventListener('seeked', () => {
-            stickyAudioPlayer.currentTime = audioPlayer.currentTime;
+            if (!isSyncing) {
+                stickyAudioPlayer.currentTime = audioPlayer.currentTime;
+            }
         });
 
         // Sync sticky player with main player
         stickyAudioPlayer.addEventListener('play', () => {
-            audioPlayer.play();
+            if (isSyncing) return;
+            isSyncing = true;
+
+            audioPlayer.play().catch(() => {}); // Catch any play errors
             vinylRecord.classList.add('playing');
             vinylRecord.classList.remove('paused');
+
+            setTimeout(() => { isSyncing = false; }, 100);
         });
 
         stickyAudioPlayer.addEventListener('pause', () => {
+            if (isSyncing) return;
+            isSyncing = true;
+
             audioPlayer.pause();
             vinylRecord.classList.remove('playing');
             vinylRecord.classList.add('paused');
+
+            setTimeout(() => { isSyncing = false; }, 100);
         });
 
         stickyAudioPlayer.addEventListener('seeked', () => {
-            audioPlayer.currentTime = stickyAudioPlayer.currentTime;
+            if (!isSyncing) {
+                audioPlayer.currentTime = stickyAudioPlayer.currentTime;
+            }
         });
 
         trackItems.forEach((item, index) => {
