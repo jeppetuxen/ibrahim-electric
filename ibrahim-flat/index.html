@@ -157,81 +157,104 @@
             font-style: normal;
         }
 
-        /* Slideshow styling */
-        .slideshow-container {
+        /* Ken Burns Effect Carousel */
+        .hero-carousel {
             position: relative;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .slide.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .slide img {
             width: 100%;
-            height: auto;
+            height: 600px;
+            overflow: hidden;
             border-radius: 8px;
         }
 
-        .slideshow-nav {
+        .carousel-slide {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 16px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
 
-        .slideshow-nav:hover {
-            background: rgba(255, 140, 0, 0.9);
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Ken Burns zoom and pan animations */
+        @keyframes kenBurns1 {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(-5%, -5%); }
+        }
+
+        @keyframes kenBurns2 {
+            0% { transform: scale(1.2) translate(-5%, 0); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+
+        @keyframes kenBurns3 {
+            0% { transform: scale(1) translate(0, -5%); }
+            100% { transform: scale(1.2) translate(5%, 0); }
+        }
+
+        @keyframes kenBurns4 {
+            0% { transform: scale(1.2) translate(0, -5%); }
+            100% { transform: scale(1) translate(-5%, 0); }
+        }
+
+        .carousel-slide:nth-child(1).active img { animation: kenBurns1 10s ease-in-out infinite alternate; }
+        .carousel-slide:nth-child(2).active img { animation: kenBurns2 10s ease-in-out infinite alternate; }
+        .carousel-slide:nth-child(3).active img { animation: kenBurns3 10s ease-in-out infinite alternate; }
+        .carousel-slide:nth-child(4).active img { animation: kenBurns4 10s ease-in-out infinite alternate; }
+        .carousel-slide:nth-child(5).active img { animation: kenBurns1 10s ease-in-out infinite alternate; }
+        .carousel-slide:nth-child(6).active img { animation: kenBurns2 10s ease-in-out infinite alternate; }
+        .carousel-slide:nth-child(7).active img { animation: kenBurns3 10s ease-in-out infinite alternate; }
+
+        /* Sticky Audio Player */
+        .sticky-player {
+            position: fixed;
+            z-index: 40;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        /* Desktop - right side */
+        @media (min-width: 768px) {
+            .sticky-player {
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 350px;
+                border-radius: 12px;
+                padding: 20px;
+            }
+        }
+
+        /* Mobile - bottom */
+        @media (max-width: 767px) {
+            .sticky-player {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                border-radius: 12px 12px 0 0;
+                padding: 16px;
+            }
+        }
+
+        .sticky-player.minimized {
+            opacity: 0.7;
+        }
+
+        .sticky-player:hover {
+            opacity: 1;
             border-color: var(--accent-color);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .prev {
-            left: 20px;
-        }
-
-        .next {
-            right: 20px;
-        }
-
-        .dots {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 6px;
-            background-color: #555;
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot:hover {
-            background-color: #888;
-            transform: scale(1.2);
-        }
-
-        .dot.active {
-            background-color: var(--accent-color);
-            transform: scale(1.3);
         }
     </style>
 </head>
@@ -270,6 +293,17 @@
         </div>
     </nav>
 
+    <!-- Sticky Audio Player -->
+    <div id="stickyPlayer" class="sticky-player" style="display: none;">
+        <div class="mb-3">
+            <h4 id="stickyTrackTitle" class="text-lg font-heading text-accent-orange mb-1">ATTACK FROM ABOVE</h4>
+            <p id="stickyTrackAlbum" class="text-sm text-gray-400">Rumours From Outer Space</p>
+        </div>
+        <audio id="stickyAudioPlayer" controls class="w-full" preload="metadata">
+            <source id="stickyAudioSource" src="audio/01+ATTACK+FROM+ABOVE.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <!-- Intro Section -->
     <section id="intro" class="relative min-h-screen flex items-center justify-center pt-20">
         <div class="absolute inset-0 z-0">
@@ -289,7 +323,30 @@
     <section id="band" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
             <div class="max-w-6xl mx-auto">
-                <img src="images/Ibreahim+Electric+505.jpg" alt="Ibrahim Electric Band" class="w-full rounded-lg shadow-2xl mb-12 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
+                <!-- Ken Burns Effect Carousel -->
+                <div class="hero-carousel mb-12 shadow-2xl">
+                    <div class="carousel-slide active">
+                        <img src="images/press/press-1.jpg" alt="Ibrahim Electric">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/press/press-2.jpg" alt="Ibrahim Electric">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/press/press-3.jpg" alt="Ibrahim Electric">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/press/press-4.jpg" alt="Ibrahim Electric">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/press/press-5.jpg" alt="Ibrahim Electric">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/press/press-6.jpg" alt="Ibrahim Electric">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="images/press/press-7.jpg" alt="Ibrahim Electric">
+                    </div>
+                </div>
 
                 <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">We are Ibrahim Electric</h2>
 
@@ -325,52 +382,6 @@
                         <footer class="text-gray-400 font-medium">— Hammondbeat.com, USA</footer>
                     </blockquote>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Press Photos Section -->
-    <section class="py-20 bg-black">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide">Press Photos</h2>
-
-            <div class="slideshow-container">
-                <div class="slide active">
-                    <img src="images/press/press-1.jpg" alt="Ibrahim Electric Press Photo 1">
-                </div>
-                <div class="slide">
-                    <img src="images/press/press-2.jpg" alt="Ibrahim Electric Press Photo 2">
-                </div>
-                <div class="slide">
-                    <img src="images/press/press-3.jpg" alt="Ibrahim Electric Press Photo 3">
-                </div>
-                <div class="slide">
-                    <img src="images/press/press-4.jpg" alt="Ibrahim Electric Press Photo 4">
-                </div>
-                <div class="slide">
-                    <img src="images/press/press-5.jpg" alt="Ibrahim Electric Press Photo 5">
-                </div>
-                <div class="slide">
-                    <img src="images/press/press-6.jpg" alt="Ibrahim Electric Press Photo 6">
-                </div>
-                <div class="slide">
-                    <img src="images/press/press-7.jpg" alt="Ibrahim Electric Press Photo 7">
-                </div>
-
-                <!-- Navigation arrows -->
-                <a class="slideshow-nav prev" onclick="changeSlide(-1)">❮</a>
-                <a class="slideshow-nav next" onclick="changeSlide(1)">❯</a>
-            </div>
-
-            <!-- Dot indicators -->
-            <div class="dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-                <span class="dot" onclick="currentSlide(6)"></span>
             </div>
         </div>
     </section>
@@ -602,13 +613,43 @@
             });
         });
 
-        // Audio Player Track Selection
+        // Ken Burns Effect Carousel
+        let carouselIndex = 0;
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+
+        function showCarouselSlide() {
+            carouselSlides.forEach(slide => slide.classList.remove('active'));
+            carouselSlides[carouselIndex].classList.add('active');
+            carouselIndex = (carouselIndex + 1) % carouselSlides.length;
+        }
+
+        // Start carousel - change every 8 seconds
+        setInterval(showCarouselSlide, 8000);
+
+        // Dual Audio Player Setup (Main + Sticky)
         const audioPlayer = document.getElementById('audioPlayer');
         const audioSource = document.getElementById('audioSource');
         const currentTrackTitle = document.getElementById('currentTrackTitle');
         const currentTrackAlbum = document.getElementById('currentTrackAlbum');
+
+        const stickyPlayer = document.getElementById('stickyPlayer');
+        const stickyAudioPlayer = document.getElementById('stickyAudioPlayer');
+        const stickyAudioSource = document.getElementById('stickyAudioSource');
+        const stickyTrackTitle = document.getElementById('stickyTrackTitle');
+        const stickyTrackAlbum = document.getElementById('stickyTrackAlbum');
+
         const trackItems = document.querySelectorAll('.track-item');
         let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        function syncPlayers(sourcePlayer, targetPlayer) {
+            targetPlayer.currentTime = sourcePlayer.currentTime;
+            if (!sourcePlayer.paused) {
+                targetPlayer.play();
+            } else {
+                targetPlayer.pause();
+            }
+        }
 
         function playTrack(index) {
             if (index < 0 || index >= trackItems.length) return;
@@ -618,14 +659,25 @@
             const title = item.dataset.title;
             const album = item.dataset.album;
 
-            // Update audio source
+            // Update both audio players
             audioSource.src = src;
-            audioPlayer.load();
-            audioPlayer.play();
+            stickyAudioSource.src = src;
 
-            // Update track info
+            audioPlayer.load();
+            stickyAudioPlayer.load();
+
+            audioPlayer.play();
+            stickyAudioPlayer.play();
+
+            // Update track info in both places
             currentTrackTitle.textContent = title;
-            currentTrackAlbum.textContent = album;
+            currentTrackAlbum.textContent = title;
+            stickyTrackTitle.textContent = title;
+            stickyTrackAlbum.textContent = album;
+
+            // Show sticky player when playing
+            stickyPlayer.style.display = 'block';
+            isPlaying = true;
 
             // Update active state
             trackItems.forEach(t => {
@@ -640,6 +692,24 @@
 
             currentTrackIndex = index;
         }
+
+        // Sync main player with sticky player
+        audioPlayer.addEventListener('play', () => {
+            stickyPlayer.style.display = 'block';
+            stickyAudioPlayer.play();
+        });
+
+        audioPlayer.addEventListener('pause', () => stickyAudioPlayer.pause());
+        audioPlayer.addEventListener('seeked', () => {
+            stickyAudioPlayer.currentTime = audioPlayer.currentTime;
+        });
+
+        // Sync sticky player with main player
+        stickyAudioPlayer.addEventListener('play', () => audioPlayer.play());
+        stickyAudioPlayer.addEventListener('pause', () => audioPlayer.pause());
+        stickyAudioPlayer.addEventListener('seeked', () => {
+            audioPlayer.currentTime = stickyAudioPlayer.currentTime;
+        });
 
         trackItems.forEach((item, index) => {
             item.addEventListener('click', function() {
@@ -657,59 +727,6 @@
                 playTrack(0);
             }
         });
-
-        // Press Photos Slideshow
-        let slideIndex = 0;
-        let slideInterval;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-
-        function showSlide(n) {
-            if (n >= slides.length) { slideIndex = 0; }
-            if (n < 0) { slideIndex = slides.length - 1; }
-
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
-        }
-
-        function changeSlide(n) {
-            slideIndex += n;
-            showSlide(slideIndex);
-            resetInterval();
-        }
-
-        function currentSlide(n) {
-            slideIndex = n;
-            showSlide(slideIndex);
-            resetInterval();
-        }
-
-        function autoSlide() {
-            slideIndex++;
-            showSlide(slideIndex);
-        }
-
-        function startInterval() {
-            slideInterval = setInterval(autoSlide, 5000); // Change slide every 5 seconds
-        }
-
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-
-        // Start the slideshow
-        startInterval();
-
-        // Pause on hover
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        if (slideshowContainer) {
-            slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
-            slideshowContainer.addEventListener('mouseleave', startInterval);
-        }
     </script>
 </body>
 </html>
