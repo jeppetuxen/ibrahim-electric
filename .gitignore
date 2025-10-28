@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+.vscode/
+
+# HTTrack cache and logs
+hts-cache/
+hts-log.txt
+cookies.txt
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Audio files (too large for git)
+# Uncomment if you want to exclude audio files from git:
+# ibrahim-flat/audio/*.mp3
+# www.ibrahimelectric.com/assets/**/*.mp3
+
+# Exclude original Squarespace mirror - keeping only the flat version
+www.ibrahimelectric.com/
+one/
+one-bck/
+*.gif
+index2.html
