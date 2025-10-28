@@ -225,34 +225,84 @@
             object-fit: cover;
         }
 
-        /* Ken Burns zoom and pan animations */
+        /* Ken Burns zoom and pan animations - smooth one-directional */
         @keyframes kenBurns1 {
             0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.2) translate(-5%, -5%); }
+            100% { transform: scale(1.15) translate(-3%, -3%); }
         }
 
         @keyframes kenBurns2 {
-            0% { transform: scale(1.2) translate(-5%, 0); }
-            100% { transform: scale(1) translate(0, 0); }
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(3%, -2%); }
         }
 
         @keyframes kenBurns3 {
-            0% { transform: scale(1) translate(0, -5%); }
-            100% { transform: scale(1.2) translate(5%, 0); }
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(-2%, 3%); }
         }
 
         @keyframes kenBurns4 {
-            0% { transform: scale(1.2) translate(0, -5%); }
-            100% { transform: scale(1) translate(-5%, 0); }
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(2%, 2%); }
         }
 
-        .carousel-slide:nth-child(1).active img { animation: kenBurns1 10s ease-in-out infinite alternate; }
-        .carousel-slide:nth-child(2).active img { animation: kenBurns2 10s ease-in-out infinite alternate; }
-        .carousel-slide:nth-child(3).active img { animation: kenBurns3 10s ease-in-out infinite alternate; }
-        .carousel-slide:nth-child(4).active img { animation: kenBurns4 10s ease-in-out infinite alternate; }
-        .carousel-slide:nth-child(5).active img { animation: kenBurns1 10s ease-in-out infinite alternate; }
-        .carousel-slide:nth-child(6).active img { animation: kenBurns2 10s ease-in-out infinite alternate; }
-        .carousel-slide:nth-child(7).active img { animation: kenBurns3 10s ease-in-out infinite alternate; }
+        @keyframes kenBurns5 {
+            0% { transform: scale(1.05) translate(-1%, 0); }
+            100% { transform: scale(1.2) translate(-4%, -4%); }
+        }
+
+        @keyframes kenBurns6 {
+            0% { transform: scale(1.05) translate(1%, -1%); }
+            100% { transform: scale(1.2) translate(4%, -3%); }
+        }
+
+        @keyframes kenBurns7 {
+            0% { transform: scale(1.05) translate(0, 1%); }
+            100% { transform: scale(1.2) translate(-3%, 4%); }
+        }
+
+        .carousel-slide:nth-child(1).active img { animation: kenBurns1 8s ease-out forwards; }
+        .carousel-slide:nth-child(2).active img { animation: kenBurns2 8s ease-out forwards; }
+        .carousel-slide:nth-child(3).active img { animation: kenBurns3 8s ease-out forwards; }
+        .carousel-slide:nth-child(4).active img { animation: kenBurns4 8s ease-out forwards; }
+        .carousel-slide:nth-child(5).active img { animation: kenBurns5 8s ease-out forwards; }
+        .carousel-slide:nth-child(6).active img { animation: kenBurns6 8s ease-out forwards; }
+        .carousel-slide:nth-child(7).active img { animation: kenBurns7 8s ease-out forwards; }
+
+        /* Intro carousel - full screen */
+        .intro-carousel {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .intro-carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2.5s ease-in-out;
+        }
+
+        .intro-carousel-slide.active {
+            opacity: 1;
+        }
+
+        .intro-carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Intro carousel specific animations */
+        .intro-carousel-slide:nth-child(1).active img { animation: kenBurns1 12s ease-out forwards; }
+        .intro-carousel-slide:nth-child(2).active img { animation: kenBurns2 12s ease-out forwards; }
+        .intro-carousel-slide:nth-child(3).active img { animation: kenBurns3 12s ease-out forwards; }
+        .intro-carousel-slide:nth-child(4).active img { animation: kenBurns4 12s ease-out forwards; }
+        .intro-carousel-slide:nth-child(5).active img { animation: kenBurns5 12s ease-out forwards; }
+        .intro-carousel-slide:nth-child(6).active img { animation: kenBurns6 12s ease-out forwards; }
+        .intro-carousel-slide:nth-child(7).active img { animation: kenBurns7 12s ease-out forwards; }
 
         /* Sticky Audio Player */
         .sticky-player {
@@ -441,8 +491,31 @@
     <!-- Intro Section -->
     <section id="intro" class="relative min-h-screen flex items-center justify-center pt-20">
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10"></div>
-            <img src="images/_OFF9682bw.jpg" alt="Ibrahim Electric" class="w-full h-full object-cover opacity-40 transition-opacity duration-1000">
+            <!-- Ken Burns carousel for intro -->
+            <div class="intro-carousel">
+                <div class="intro-carousel-slide active">
+                    <img src="images/press/press-1.jpg" alt="Ibrahim Electric">
+                </div>
+                <div class="intro-carousel-slide">
+                    <img src="images/press/press-2.jpg" alt="Ibrahim Electric">
+                </div>
+                <div class="intro-carousel-slide">
+                    <img src="images/press/press-3.jpg" alt="Ibrahim Electric">
+                </div>
+                <div class="intro-carousel-slide">
+                    <img src="images/press/press-4.jpg" alt="Ibrahim Electric">
+                </div>
+                <div class="intro-carousel-slide">
+                    <img src="images/press/press-5.jpg" alt="Ibrahim Electric">
+                </div>
+                <div class="intro-carousel-slide">
+                    <img src="images/press/press-6.jpg" alt="Ibrahim Electric">
+                </div>
+                <div class="intro-carousel-slide">
+                    <img src="images/press/press-7.jpg" alt="Ibrahim Electric">
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 opacity-70"></div>
         </div>
         <div class="relative z-10 container mx-auto px-6 text-center">
             <blockquote class="text-2xl md:text-4xl lg:text-5xl font-heading font-light leading-relaxed max-w-5xl mx-auto">
@@ -762,7 +835,7 @@
             });
         });
 
-        // Ken Burns Effect Carousel
+        // Ken Burns Effect Carousel - Band Section
         let carouselIndex = 0;
         const carouselSlides = document.querySelectorAll('.carousel-slide');
 
@@ -774,6 +847,19 @@
 
         // Start carousel - change every 8 seconds
         setInterval(showCarouselSlide, 8000);
+
+        // Ken Burns Effect Carousel - Intro Section
+        let introCarouselIndex = 0;
+        const introCarouselSlides = document.querySelectorAll('.intro-carousel-slide');
+
+        function showIntroCarouselSlide() {
+            introCarouselSlides.forEach(slide => slide.classList.remove('active'));
+            introCarouselSlides[introCarouselIndex].classList.add('active');
+            introCarouselIndex = (introCarouselIndex + 1) % introCarouselSlides.length;
+        }
+
+        // Start intro carousel - change every 12 seconds
+        setInterval(showIntroCarouselSlide, 12000);
 
         // Dual Audio Player Setup (Main + Sticky)
         const audioPlayer = document.getElementById('audioPlayer');
