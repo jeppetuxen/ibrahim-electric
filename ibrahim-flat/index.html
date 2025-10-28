@@ -20,6 +20,10 @@
                         'heading': ['Abel', 'sans-serif'],
                         'body': ['Cabin', 'sans-serif'],
                         'code': ['Source Code Pro', 'monospace']
+                    },
+                    colors: {
+                        'accent-orange': '#FF8C00',
+                        'accent-amber': '#FFA500',
                     }
                 }
             }
@@ -27,6 +31,10 @@
     </script>
 
     <style>
+        :root {
+            --accent-color: #FF8C00;
+            --accent-glow: rgba(255, 140, 0, 0.3);
+        }
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -96,6 +104,23 @@
             background-color: rgba(0, 0, 0, 0.95);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
         }
+
+        /* Accent color enhancements */
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .accent-text {
+            color: var(--accent-color);
+        }
+
+        .accent-border {
+            border-color: var(--accent-color);
+        }
+
+        .accent-glow:hover {
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
     </style>
 </head>
 <body class="bg-black text-white font-body antialiased">
@@ -105,7 +130,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <h1 class="text-2xl font-heading tracking-[0.3em] animate-slide-in-right">
-                    <a href="index.html" class="hover:text-gray-300">IBRAHIM ELECTRIC</a>
+                    <a href="index.html" class="hover:text-accent-orange transition-colors">IBRAHIM ELECTRIC</a>
                 </h1>
                 <div class="hidden md:flex space-x-8 font-medium">
                     <a href="#intro" class="hover:text-gray-300 hover:scale-110 inline-block">Home</a>
@@ -178,12 +203,12 @@
 
                 <!-- Press Quotes -->
                 <div class="grid md:grid-cols-2 gap-8 mt-16">
-                    <blockquote class="quote-card bg-gray-800 p-8 rounded-lg border-l-4 border-white">
+                    <blockquote class="quote-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-orange accent-glow">
                         <p class="text-xl mb-4 italic font-body">"Ibrahim Electric 'kicks ass'! These 3 young musicians display some seriously large reserves of energy... This is better than Viagra!"</p>
                         <footer class="text-gray-400 font-medium">— Information, DK</footer>
                     </blockquote>
 
-                    <blockquote class="quote-card bg-gray-800 p-8 rounded-lg border-l-4 border-white">
+                    <blockquote class="quote-card bg-gray-800 p-8 rounded-lg border-l-4 border-accent-orange accent-glow">
                         <p class="text-xl mb-4 italic font-body">"Do you remember the feeling of listening to a band for the first time and being completely blown away by the sheer majesty of the performance? For those of you who have experienced this, be prepared for it to happen again. For those of you who don't know what I'm talking about, you will understand. Prepare yourself for Ibrahim Electric!"</p>
                         <footer class="text-gray-400 font-medium">— Hammondbeat.com, USA</footer>
                     </blockquote>
@@ -203,7 +228,7 @@
 
                 <div class="space-y-8">
                     <!-- Track 1 -->
-                    <div class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-gray-600">
+                    <div class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange accent-glow">
                         <h3 class="text-2xl font-heading mb-2 tracking-wide">ATTACK FROM ABOVE</h3>
                         <p class="text-gray-400 mb-4 font-medium">Track from the album 'Rumours From Outer Space'</p>
                         <audio controls class="w-full hover:scale-[1.01] transition-transform">
@@ -213,7 +238,7 @@
                     </div>
 
                     <!-- Track 2 -->
-                    <div class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-gray-600">
+                    <div class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange accent-glow">
                         <h3 class="text-2xl font-heading mb-2 tracking-wide">BIG BOSS</h3>
                         <p class="text-gray-400 mb-4 font-medium">Track from the album 'Rumours From Outer Space'</p>
                         <audio controls class="w-full hover:scale-[1.01] transition-transform">
@@ -223,7 +248,7 @@
                     </div>
 
                     <!-- Additional Tracks -->
-                    <details class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-gray-600">
+                    <details class="track-card bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange accent-glow">
                         <summary class="text-xl font-heading cursor-pointer hover:text-gray-300 tracking-wide">More Tracks ▼</summary>
                         <div class="mt-6 space-y-6">
                             <div class="border-t border-gray-800 pt-6">
@@ -258,7 +283,7 @@
             <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
                 Experience the explosive energy of Ibrahim Electric live! Check out our upcoming tour dates and past performances.
             </p>
-            <a href="livetour.html" class="inline-block bg-white text-black px-12 py-4 rounded-full text-lg font-bold hover:bg-gray-200 transition-all duration-300 hover:scale-110 hover:shadow-2xl">
+            <a href="livetour.html" class="inline-block bg-accent-orange text-white px-12 py-4 rounded-full text-lg font-bold hover:bg-accent-amber transition-all duration-300 hover:scale-110 hover:shadow-2xl">
                 View Tour Dates
             </a>
         </div>
