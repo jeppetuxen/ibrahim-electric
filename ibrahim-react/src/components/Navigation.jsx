@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { navigationItems } from '../data/navigation';
+import { SITE, TIMING } from '../data/constants';
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,7 +11,7 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > TIMING.SCROLL_THRESHOLD);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -59,15 +61,30 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <h1 className="site-title">
-            <Link to="/">IBRAHIM ELECTRIC</Link>
+            <Link to="/">{SITE.TITLE}</Link>
           </h1>
 
           <div className="hidden md:flex space-x-8 font-medium">
-            <a href="#intro" onClick={(e) => handleHashClick(e, '#intro')} className="hover:text-gray-300 hover:scale-110 inline-block transition-all">Home</a>
-            <a href="#band" onClick={(e) => handleHashClick(e, '#band')} className="hover:text-gray-300 hover:scale-110 inline-block transition-all">Band</a>
-            <a href="#music" onClick={(e) => handleHashClick(e, '#music')} className="hover:text-gray-300 hover:scale-110 inline-block transition-all">Music</a>
-            <Link to="/tour" className="hover:text-gray-300 hover:scale-110 inline-block transition-all">Live</Link>
-            <Link to="/contact" className="hover:text-gray-300 hover:scale-110 inline-block transition-all">Contact</Link>
+            {navigationItems.map(item => (
+              item.type === 'hash' ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleHashClick(e, item.href)}
+                  className="hover:text-gray-300 hover:scale-110 inline-block transition-all"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="hover:text-gray-300 hover:scale-110 inline-block transition-all"
+                >
+                  {item.label}
+                </Link>
+              )
+            ))}
           </div>
 
           <button
@@ -83,11 +100,26 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 space-y-4 animate-fade-in text-center">
-            <a href="#intro" onClick={(e) => handleHashClick(e, '#intro')} className="block hover:text-gray-300 transition-transform">Home</a>
-            <a href="#band" onClick={(e) => handleHashClick(e, '#band')} className="block hover:text-gray-300 transition-transform">Band</a>
-            <a href="#music" onClick={(e) => handleHashClick(e, '#music')} className="block hover:text-gray-300 transition-transform">Music</a>
-            <Link to="/tour" className="block hover:text-gray-300 transition-transform">Live</Link>
-            <Link to="/contact" className="block hover:text-gray-300 transition-transform">Contact</Link>
+            {navigationItems.map(item => (
+              item.type === 'hash' ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleHashClick(e, item.href)}
+                  className="block hover:text-gray-300 transition-transform"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="block hover:text-gray-300 transition-transform"
+                >
+                  {item.label}
+                </Link>
+              )
+            ))}
           </div>
         )}
       </div>

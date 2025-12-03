@@ -12,6 +12,42 @@ export const useAudio = () => {
 
 const tracks = [
   {
+    title: 'FAST FIRE',
+    album: 'Fast Fire',
+    year: '2025',
+    src: '/music/fast-fire/fast-fire.mp3',
+    coverArt: '/images/fast-fire-cover.jpg',
+    releaseDate: new Date('2025-11-28'),
+    isSingle: true
+  },
+  {
+    title: 'SHUFFLE CORN',
+    album: 'Fast Fire',
+    year: '2025',
+    src: '/music/fast-fire/shuffle-corn.mp3',
+    coverArt: '/images/fast-fire-cover.jpg',
+    releaseDate: new Date('2025-11-28'),
+    isSingle: true
+  },
+  {
+    title: 'CHEYENNE',
+    album: 'Fast Fire',
+    year: '2025',
+    src: '/music/fast-fire/cheyenne.mp3',
+    coverArt: '/images/fast-fire-cover.jpg',
+    releaseDate: new Date('2025-12-04'),
+    isSingle: true
+  },
+  {
+    title: 'FLAMBINO',
+    album: 'Fast Fire',
+    year: '2025',
+    src: '/music/fast-fire/flambino.mp3',
+    coverArt: '/images/fast-fire-cover.jpg',
+    releaseDate: new Date('2025-12-10'),
+    isSingle: true
+  },
+  {
     title: 'ATTACK FROM ABOVE',
     album: 'Rumours From Outer Space',
     year: '2014',
@@ -98,6 +134,7 @@ export const AudioProvider = ({ children }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
+  const [isAudioUnlocked, setIsAudioUnlocked] = useState(false);
   const audioRef = useRef(new Audio());
 
   const currentTrack = tracks[currentTrackIndex];
@@ -115,11 +152,19 @@ export const AudioProvider = ({ children }) => {
   const playTrack = (index) => {
     if (index < 0 || index >= tracks.length) return;
 
+    const track = tracks[index];
+
+    // Check if track is released
+    if (track.releaseDate && track.releaseDate > new Date()) {
+      console.log('Track not yet released');
+      return;
+    }
+
     const audio = audioRef.current;
     audio.pause();
 
     setCurrentTrackIndex(index);
-    audio.src = tracks[index].src;
+    audio.src = track.src;
 
     // Wait for the audio to be ready before playing
     const handleCanPlay = () => {
@@ -139,6 +184,10 @@ export const AudioProvider = ({ children }) => {
 
   useEffect(() => {
     const audio = audioRef.current;
+
+    // iOS compatibility settings
+    audio.setAttribute('playsinline', 'true');
+    audio.setAttribute('webkit-playsinline', 'true');
 
     // Load the first track by default
     audio.src = currentTrack.src;
@@ -173,9 +222,22 @@ export const AudioProvider = ({ children }) => {
   const togglePlay = () => {
     const audio = audioRef.current;
     if (audio.paused) {
-      audio.play().then(() => {
-        setIsPlayerVisible(true);
-      });
+      // iOS requires loading the audio before playing
+      if (audio.readyState < 2) {
+        audio.load();
+      }
+
+      audio.play()
+        .then(() => {
+          setIsPlayerVisible(true);
+        })
+        .catch(error => {
+          console.error('Error playing audio:', error);
+          // On iOS, we might need to wait for user interaction
+          if (error.name === 'NotAllowedError' || error.name === 'NotSupportedError') {
+            console.log('Audio playback requires user interaction on iOS');
+          }
+        });
     } else {
       audio.pause();
     }

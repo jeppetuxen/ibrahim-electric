@@ -5,6 +5,38 @@ import Carousel from '../components/Carousel';
 
 const Home = () => {
   const { tracks, playTrack, currentTrackIndex, isPlaying } = useAudio();
+  const [vinylUrl, setVinylUrl] = useState('https://gatewaymusicshop.dk/en/music/fast-fire');
+
+  useEffect(() => {
+    // Detect user language and set appropriate vinyl shop URL
+    const userLang = navigator.language || navigator.userLanguage;
+    const isDanish = userLang.toLowerCase().startsWith('da');
+    const langCode = isDanish ? 'da' : 'en';
+    setVinylUrl(`https://gatewaymusicshop.dk/${langCode}/music/fast-fire`);
+
+    // Scroll to NEW RELEASE section on first load (resets after 1 day)
+    const newReleaseData = localStorage.getItem('hasSeenNewRelease');
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+    if (!newReleaseData) {
+      // First time visitor
+      localStorage.setItem('hasSeenNewRelease', JSON.stringify({ timestamp: now }));
+      setTimeout(() => {
+        window.location.hash = '#new-release';
+      }, 1000);
+    } else {
+      // Check if more than 1 day has passed
+      const data = JSON.parse(newReleaseData);
+      if (now - data.timestamp > oneDay) {
+        // Reset and scroll again
+        localStorage.setItem('hasSeenNewRelease', JSON.stringify({ timestamp: now }));
+        setTimeout(() => {
+          window.location.hash = '#new-release';
+        }, 1000);
+      }
+    }
+  }, []);
 
   const introImages = [
     '/images/front/cropped2025.jpg',
@@ -24,8 +56,8 @@ const Home = () => {
 
   return (
     <div className="page-transition-enter">
-      {/* Intro Section */}
-      <section id="intro" className="relative min-h-screen flex items-center justify-center pt-20">
+        {/* Intro Section */}
+        <section id="intro" className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="absolute inset-0 z-0">
           <Carousel images={introImages} interval={12000} className="intro-carousel" slideClassName="intro-carousel-slide" />
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 opacity-70"></div>
@@ -50,7 +82,7 @@ const Home = () => {
       </section>
 
       {/* NEW RELEASE Section */}
-      <section className="relative py-32 overflow-hidden">
+      <section id="new-release" className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
         </div>
@@ -76,44 +108,66 @@ const Home = () => {
               </div>
 
               {/* Release Info */}
-              <div className="space-y-8 animate-fade-in-up delay-200">
+              <div className="space-y-6 animate-fade-in-up delay-200">
                 <div>
                   <h3 className="text-4xl md:text-5xl font-heading text-white mb-4">FAST FIRE</h3>
-                  <p className="text-xl text-gray-300 mb-6">
-                    Available Soon
+                  <p className="text-xl text-accent-orange font-bold mb-6">
+                    Full Album • Vinyl Release: December 6, 2025
                   </p>
-                  <p className="text-lg text-gray-400 leading-relaxed">
+                  <p className="text-lg text-gray-400 leading-relaxed mb-6">
                     Ibrahim Electric returns with their most explosive album yet. FAST FIRE delivers
                     the trio's signature blend of afrobeat, jazz, and raw energy in a sonic experience
                     that will leave you breathless.
                   </p>
                 </div>
 
-                {/* Pre-listen Button */}
-                <div>
+                {/* Call to Action Buttons */}
+                <div className="space-y-4">
+                  {/* Vinyl Preorder - Primary CTA */}
+                  <a
+                    href={vinylUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-gradient-to-r from-accent-orange to-accent-amber text-white px-8 py-4 rounded-full text-lg font-bold btn-modern transition-all duration-300 hover:scale-105 hover:shadow-2xl text-center"
+                  >
+                    Preorder Vinyl Now
+                  </a>
+
+                  {/* Singles */}
+                  <Link
+                    to="/singles"
+                    className="block w-full bg-gray-800 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:bg-gray-700 hover:scale-105 text-center border-2 border-gray-700 hover:border-accent-orange"
+                  >
+                    Singles
+                  </Link>
+
+                  {/* Listen Full Album on Sleeve */}
                   <a
                     href="https://sleeve.fm/artists/ibrahimelectric"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-10 py-4 rounded-full text-lg font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl text-center"
+                    className="block w-full bg-gray-800 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:bg-gray-700 hover:scale-105 text-center border-2 border-gray-700 hover:border-accent-orange"
                   >
-                    Pre-listen Now
+                    Listen Full Album on Sleeve
                   </a>
                 </div>
 
-                {/* Streaming Link */}
+                {/* Sleeve Membership CTA */}
                 <div className="pt-6 border-t border-gray-800">
-                  <p className="text-sm text-gray-400">
-                    Available on{' '}
-                    <a
-                      href="https://sleeve.fm/artists/ibrahimelectric"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent-orange hover:underline font-medium"
-                    >
-                      Sleeve.fm
-                    </a>
+                  <p className="text-gray-400 mb-3">
+                    Join us at Sleeve to get early access to new releases, and much more.
                   </p>
+                  <a
+                    href="https://sleeve.fm/artists/ibrahimelectric"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-accent-orange hover:text-white transition-colors font-medium"
+                  >
+                    Become a Sleeve member
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
@@ -135,37 +189,37 @@ const Home = () => {
 
             <div className="max-w-4xl mx-auto space-y-6 text-lg text-gray-300 leading-relaxed">
               <p className="hover:text-white transition-colors duration-300">
-                During the last couple of years IBRAHIM ELECTRIC has been one of the most popular European jazz groups...
-                These 3 personal instrumentalists have - besides the popularity with this group - made a name for themselves
-                as some of the most striking on their respective instruments in Scandinavia.
+                During the last decade IBRAHIM ELECTRIC has been one of the most popular European instrumental groups...
+                These 3 personal instrumentalists have - besides the popularity with this group – also made a name for themselves
+                as some of the most striking on their respective instruments in Europe.
               </p>
 
               <p className="hover:text-white transition-colors duration-300">
-                The Danish trio IBRAHIM ELECTRIC never disappoints. Their quirky – provocative – extroverted - original music
-                sticks its fingers into just about every musical cookie jar... and sends cascades of pearls from the speakers.
+                The danish trio IBRAHIM ELECTRIC never disappoints. Their quirky – provocative – extroverted - original music
+                sticks its fingers into just about every musical cookie jar, and sends cascades of pearls from the speakers.
               </p>
 
               <p className="hover:text-white transition-colors duration-300">
-                IBRAHIM ELECTRIC's style is not for the pedantic. There are elements of old fashioned soul/jazz – AFRObeat -
+                IBRAHIM ELECTRIC's style is not for the pedantic. There are elements of old fashioned soul/jazz – afrobeat -
                 60's acid-power-beat - and of course the trio's trademark: the fast, almost-punk passages in which the three
                 musicians merge into one playful organism.
               </p>
 
               <p className="hover:text-white transition-colors duration-300">
-                Each of the band-members possess an extremely high level of musical ENERGY, and they have a mutual love for
-                the pure energy in the music... This has made this unit extraordinary!
+                Each of the band-members possess an extremely high level of musicianship plus very large reserves of musical ENERGY!
+                That combination and their mutual love for playing music with each other for almost 20 years now, has made this unit extraordinary!
               </p>
 
               <p className="hover:text-white transition-colors duration-300">
-                Whether Niclas is playing a guitar solo in the spirit of Ali Farka Toure...Jeppe is playing a solo that leads
-                your mind to the Hammond-icons of the 1960's...or Stefan is playing a drum-solo with avantgarde elements, the
-                one thing that overshines it all, is their love for playing and performing, and the sheer intensity of their expression!
+                Whether Niclas is playing a guitar solo in the spirit of Ali Farka Toure, Jeppe is playing a solo that leads
+                your mind to the Hammond-icons of the 1960's, or Stefan is playing a drum-solo with avantgarde elements, the
+                one thing that overshines it all, is their mutual love for playing and performing, and the sheer intensity of their expression!
               </p>
 
               <p className="hover:text-white transition-colors duration-300">
                 This trio is a fantastic live experience! An experience which has been delivered in following countries so far:
-                USA – Canada – Morocco – Brazil – Denmark – England – Ireland – Scotland – Poland – Sweden – Norway – Finland –
-                France – Germany – Lithuania – Latvia – Estonia – Netherlands – China – Korea – Thailand!
+                USA – Canada – Morocco – Brazil – Denmark – England – Spain – Ireland – Scotland – Poland – Sweden – Norway – Finland –
+                France – Germany – Switzerland – Greece – Lithuania – Latvia – Estonia – Netherlands – China – Korea – Thailand...
               </p>
 
               <div className="text-center py-8 text-xl font-medium">
@@ -220,12 +274,45 @@ const Home = () => {
             <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
               <h4 className="text-xl font-heading mb-4 text-gray-300 tracking-wide">Select a Track:</h4>
               <div className="space-y-2">
-                {tracks.map((track, index) => (
+                {(() => {
+                  const now = new Date();
+
+                  // Separate tracks with and without release dates
+                  const tracksWithDates = tracks.map((track, index) => ({ track, index }))
+                    .filter(({ track }) => track.releaseDate);
+                  const tracksWithoutDates = tracks.map((track, index) => ({ track, index }))
+                    .filter(({ track }) => !track.releaseDate);
+
+                  // Get released tracks with dates (singles that are out)
+                  const releasedSingles = tracksWithDates.filter(({ track }) => track.releaseDate <= now);
+
+                  // Get unreleased tracks
+                  const upcomingTracks = tracksWithDates
+                    .filter(({ track }) => track.releaseDate > now)
+                    .sort((a, b) => a.track.releaseDate - b.track.releaseDate);
+
+                  // Get all tracks releasing on the same date as the next upcoming
+                  let nextUpcoming = [];
+                  if (upcomingTracks.length > 0) {
+                    const nextDate = upcomingTracks[0].track.releaseDate;
+                    nextUpcoming = upcomingTracks.filter(({ track }) =>
+                      track.releaseDate.getTime() === nextDate.getTime()
+                    );
+                  }
+
+                  // Combine: released singles (top) + next upcoming singles + other tracks
+                  const displayTracks = [...releasedSingles, ...nextUpcoming, ...tracksWithoutDates];
+
+                  return displayTracks.map(({ track, index }) => {
+                    const isReleased = !track.releaseDate || track.releaseDate <= now;
+                    return (
                   <div
                     key={index}
-                    onClick={() => playTrack(index)}
-                    className={`track-card bg-gray-800 p-4 rounded-lg cursor-pointer hover:bg-gray-700 transition-all border-l-4 ${
-                      currentTrackIndex === index ? 'border-accent-orange' : 'border-transparent hover:border-accent-orange'
+                    onClick={() => isReleased && playTrack(index)}
+                    className={`track-card bg-gray-800 p-4 rounded-lg transition-all border-l-4 ${
+                      !isReleased
+                        ? 'opacity-50 cursor-not-allowed border-transparent'
+                        : `cursor-pointer hover:bg-gray-700 ${currentTrackIndex === index ? 'border-accent-orange' : 'border-transparent hover:border-accent-orange'}`
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
@@ -255,7 +342,11 @@ const Home = () => {
                         {/* Track Info */}
                         <div className="flex-1 min-w-0">
                           <div className="font-heading tracking-wide truncate">{track.title}</div>
-                          {track.album && (
+                          {!isReleased && track.releaseDate ? (
+                            <div className="text-xs text-accent-orange font-medium">
+                              Available {track.releaseDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                            </div>
+                          ) : track.album && (
                             <div className="text-xs text-gray-400 truncate">
                               {track.album} {track.year && `(${track.year})`}
                             </div>
@@ -272,13 +363,14 @@ const Home = () => {
                       )}
                     </div>
                   </div>
-                ))}
+                );
+                  });
+                })()}
               </div>
             </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 };
