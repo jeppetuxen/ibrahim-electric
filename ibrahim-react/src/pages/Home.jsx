@@ -4,7 +4,7 @@ import { useAudio } from '../context/AudioContext';
 import Carousel from '../components/Carousel';
 
 const Home = () => {
-  const { tracks, playTrack, currentTrackIndex, isPlaying } = useAudio();
+  const { tracks, playTrack, currentTrackIndex, isPlaying, isLoading } = useAudio();
   const [vinylUrl, setVinylUrl] = useState('https://gatewaymusicshop.dk/en/music/fast-fire');
 
   useEffect(() => {
@@ -305,6 +305,8 @@ const Home = () => {
 
                   return displayTracks.map(({ track, index }) => {
                     const isReleased = !track.releaseDate || track.releaseDate <= now;
+                    const isCurrentTrack = currentTrackIndex === index;
+                    const showLoader = isCurrentTrack && isLoading;
                     return (
                   <div
                     key={index}
@@ -312,13 +314,13 @@ const Home = () => {
                     className={`track-card bg-gray-800 p-4 rounded-lg transition-all border-l-4 ${
                       !isReleased
                         ? 'opacity-50 cursor-not-allowed border-transparent'
-                        : `cursor-pointer hover:bg-gray-700 ${currentTrackIndex === index ? 'border-accent-orange' : 'border-transparent hover:border-accent-orange'}`
+                        : `cursor-pointer hover:bg-gray-700 ${isCurrentTrack ? 'border-accent-orange' : 'border-transparent hover:border-accent-orange'}`
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3 flex-1 min-w-0">
                         {/* Album Cover Thumbnail */}
-                        <div className="w-10 h-10 flex-shrink-0 rounded overflow-hidden bg-gray-700 border border-gray-600">
+                        <div className="w-10 h-10 flex-shrink-0 rounded overflow-hidden bg-gray-700 border border-gray-600 relative">
                           {track.coverArt ? (
                             <img
                               src={track.coverArt}
@@ -338,6 +340,11 @@ const Home = () => {
                               <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
                             </svg>
                           </div>
+                          {showLoader && (
+                            <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+                              <div className="track-loader-spinner"></div>
+                            </div>
+                          )}
                         </div>
                         {/* Track Info */}
                         <div className="flex-1 min-w-0">
@@ -353,7 +360,7 @@ const Home = () => {
                           )}
                         </div>
                       </div>
-                      {currentTrackIndex === index && isPlaying && (
+                      {isCurrentTrack && isPlaying && !showLoader && (
                         <div className="equalizer flex-shrink-0">
                           <div className="equalizer-bar"></div>
                           <div className="equalizer-bar"></div>

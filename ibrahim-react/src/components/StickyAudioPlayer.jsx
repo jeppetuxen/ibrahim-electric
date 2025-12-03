@@ -8,6 +8,7 @@ const StickyAudioPlayer = () => {
     isPlayerExpanded,
     currentTime,
     duration,
+    isLoading,
     togglePlay,
     playNext,
     playPrevious,
@@ -112,6 +113,11 @@ const StickyAudioPlayer = () => {
                 e.target.style.display = 'none';
               }}
             />
+          )}
+          {isLoading && (
+            <div className="vinyl-loader">
+              <div className="loader-spinner"></div>
+            </div>
           )}
         </div>
       </div>

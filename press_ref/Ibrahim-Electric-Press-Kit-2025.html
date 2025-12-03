@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ibrahim Electric - Press Kit 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #000;
+            color: #fff;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 0 auto;
+            background: #000;
+            page-break-after: always;
+            position: relative;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Cover Page */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+        }
+
+        .cover-logo {
+            font-size: 52px;
+            font-weight: 800;
+            color: #FF8C00;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+        }
+
+        .cover-subtitle {
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #888;
+            margin-bottom: 60px;
+        }
+
+        .cover-tagline {
+            font-size: 14px;
+            font-style: italic;
+            color: #666;
+            max-width: 400px;
+        }
+
+        .cover-year {
+            position: absolute;
+            bottom: 30mm;
+            font-size: 12px;
+            color: #444;
+            letter-spacing: 4px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF8C00;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #FF8C00;
+        }
+
+        /* Quotes Page */
+        .quote-large {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .quote-source {
+            font-size: 11px;
+            color: #FF8C00;
+            margin-bottom: 35px;
+        }
+
+        .quote-block {
+            padding: 20px;
+            border-left: 3px solid #FF8C00;
+            margin-bottom: 25px;
+            background: rgba(255, 140, 0, 0.05);
+        }
+
+        .quote-block p {
+            font-size: 12px;
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .quote-block .source {
+            font-size: 10px;
+            color: #FF8C00;
+            font-style: normal;
+        }
+
+        /* Bio Section */
+        .bio-text {
+            color: #ccc;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .bio-text strong {
+            color: #FF8C00;
+        }
+
+        /* Member Profiles */
+        .member-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .member {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 15px;
+            padding: 15px;
+            background: #111;
+            border-radius: 8px;
+        }
+
+        .member-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #FF8C00;
+        }
+
+        .member-info h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #FF8C00;
+            margin-bottom: 3px;
+        }
+
+        .member-info .instrument {
+            font-size: 10px;
+            color: #888;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-info p {
+            font-size: 9px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* History/Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #FF8C00;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Country List */
+        .country-list {
+            font-size: 10px;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .country-list strong {
+            color: #FF8C00;
+        }
+
+        /* Technical Rider */
+        .rider-section {
+            margin-bottom: 20px;
+        }
+
+        .rider-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FF8C00;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rider-content {
+            color: #ccc;
+            font-size: 10px;
+        }
+
+        .rider-content p {
+            margin-bottom: 5px;
+        }
+
+        .rider-important {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 8px;
+            border-left: 3px solid #FF8C00;
+        }
+
+        /* Channel List */
+        .channel-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .channel-table th,
+        .channel-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            font-size: 10px;
+        }
+
+        .channel-table th {
+            background: #FF8C00;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .channel-table td {
+            color: #ccc;
+        }
+
+        .channel-table tr:nth-child(even) {
+            background: #111;
+        }
+
+        /* Contact Page */
+        .contact-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .contact-logo {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FF8C00;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+        }
+
+        .contact-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .contact-value a {
+            color: #FF8C00;
+            text-decoration: none;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Footer on pages */
+        .page-footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 20mm;
+            right: 20mm;
+            text-align: center;
+            font-size: 8px;
+            color: #444;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: Cover -->
+    <div class="page cover">
+        <div class="cover-logo">IBRAHIM ELECTRIC</div>
+        <div class="cover-subtitle">PRESS KIT</div>
+        <div class="cover-tagline">"Better Than Viagra"</div>
+        <div class="cover-year">2025</div>
+    </div>
+
+    <!-- PAGE 2: Press Quotes -->
+    <div class="page">
+        <div class="section-header">PRESS ACCLAIM</div>
+
+        <div class="quote-large">"BETTER THAN VIAGRA"</div>
+        <div class="quote-source">— Information, Denmark</div>
+
+        <div class="quote-large">"BIG, INTERSTELLAR FUN"</div>
+        <div class="quote-source">— Downbeat Magazine, USA</div>
+
+        <div class="quote-large">"FASTER INTO YOUR BLOOD THAN A GANGES PARASITE"</div>
+        <div class="quote-source">— NYC Jazz Record, USA</div>
+
+        <div class="quote-large">"CAN YOU SAY 'INVENTIVE'? I KNOW THESE GUYS CAN"</div>
+        <div class="quote-source">— Jazz Times, Canada</div>
+
+        <div class="quote-block">
+            <p>"Do you remember the feeling of listening to a band for the first time and being completely blown away by the sheer majesty of the performance? For those of you who have experienced this, be prepared for it to happen again. For those of you who don't know what I'm talking about, you will understand. Prepare yourself for Ibrahim Electric!"</p>
+            <div class="source">— Hammondbeat.com, USA</div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Dance, freak out, headbang - or smoke some grass and eat some funny mushrooms. No matter how you listen to Ibrahim Electric you'll have to agree that they have an effect on your body like an all-time total orgasm!"</p>
+            <div class="source">— Jazz Special, Denmark</div>
+        </div>
+
+        <div class="page-footer">IBRAHIM ELECTRIC — PRESS KIT 2025</div>
+    </div>
+
+    <!-- PAGE 3: Biography -->
+    <div class="page">
+        <div class="section-header">THE BAND</div>
+
+        <p class="bio-text">
+            During the last decade <strong>IBRAHIM ELECTRIC</strong> has been one of the most sought-after European instrumental groups. These 3 personal instrumentalists have - besides the popularity with this group – also made a name for themselves as some of the most striking on their respective instruments in Europe.
+        </p>
+
+        <p class="bio-text">
+            The Danish trio <strong>IBRAHIM ELECTRIC</strong> never disappoints. Their quirky – provocative – extroverted - original music sticks its fingers into just about every musical cookie jar, and sends cascades of pearls from the speakers.
+        </p>
+
+        <p class="bio-text">
+            <strong>IBRAHIM ELECTRIC's</strong> style is not for the pedantic. There are elements of old fashioned soul/jazz – afrobeat - 60's acid-power-beat - and of course the trio's trademark: the fast, almost-punk passages in which the three musicians merge into one playful organism.
+        </p>
+
+        <p class="bio-text">
+            Each of the band-members possess an extremely high level of musicianship plus very large reserves of musical <strong>ENERGY</strong>! That combination and their mutual love for playing music with each other for almost 20 years now, has made this unit extraordinary!
+        </p>
+
+        <p class="bio-text">
+            Whether Niclas is playing a guitar solo in the spirit of Ali Farka Toure, Jeppe is playing a solo that leads your mind to the Hammond-icons of the 1960's, or Stefan is playing a drum-solo with avantgarde elements, the one thing that overshines it all, is their mutual love for playing and performing, and the sheer intensity of their expression!
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years Together</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Concerts</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Countries</div>
+            </div>
+        </div>
+
+        <div class="country-list">
+            <strong>Performed in:</strong> USA – Canada – Morocco – Brazil – Denmark – England – Ireland – Scotland – Poland – Sweden – Norway – Finland – France – Germany – Lithuania – Latvia – Estonia – Netherlands – China – Korea – Thailand – Spain – Cyprus – Monaco – Serbia
+        </div>
+
+        <div class="page-footer">IBRAHIM ELECTRIC — PRESS KIT 2025</div>
+    </div>
+
+    <!-- PAGE 4: Band Members -->
+    <div class="page">
+        <div class="section-header">THE MUSICIANS</div>
+
+        <div class="member-grid">
+            <div class="member">
+                <div style="width: 80px; height: 80px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #FF8C00;">
+                    <span style="color: #FF8C00; font-weight: bold;">NK</span>
+                </div>
+                <div class="member-info">
+                    <h3>NICLAS KNUDSEN</h3>
+                    <div class="instrument">Guitar</div>
+                    <p>Playing professionally since 1992. Has released albums with jazz legends David Liebman, Ray Anderson, John Tchicai, and Adam Nussbaum. Danish Grammy winner (1999). Won first prize at Gexto Jazz Competition in Spain (1996, 1999). Recipient of the prestigious Roland Musical Award. Currently plays regularly with bass-icon Matt Garrison and Danish bass-legend Jesper Lundgaard.</p>
+                </div>
+            </div>
+
+            <div class="member">
+                <div style="width: 80px; height: 80px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #FF8C00;">
+                    <span style="color: #FF8C00; font-weight: bold;">JT</span>
+                </div>
+                <div class="member-info">
+                    <h3>JEPPE TUXEN</h3>
+                    <div class="instrument">Hammond B3 Organ</div>
+                    <p>Considered one of the most talented Hammond organ players in Europe. Graduated from Rhythmic Music Conservatory in Copenhagen (2003). His style has been compared to Jon Lord (Deep Purple), Booker T. Jones, Jimmy McGriff, Larry Young, and Dr. Lonnie Smith. Critics wrote: "The Hammond-playing by Tuxen has 'God-like' calibre" – Jazz Special Magazine. "Jeppe Tuxen treats his Hammond B3 as if both Jimmy Smith and the Devil himself were close on his heels." – Information</p>
+                </div>
+            </div>
+
+            <div class="member">
+                <div style="width: 80px; height: 80px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #FF8C00;">
+                    <span style="color: #FF8C00; font-weight: bold;">SP</span>
+                </div>
+                <div class="member-info">
+                    <h3>STEFAN PASBORG</h3>
+                    <div class="instrument">Drums</div>
+                    <p>Three-time Danish Music Awards winner. Known on the European jazz scene as a highly personal drummer, composer, and bandleader. Has performed with Marc Ducret, Tomasz Stanko, Miroslav Vitous, Ray Anderson, Ellery Eskelin, and John Tchicai. Awards include: Soloist prize at 16th European Jazz Contest (Germany), First prize at 5th European Tournament for Improvised Music (France), Danish Arts Foundation grants (2003-2005). His album TriplePoint was selected into worldwide TOP 5 "Best Debut Albums of 2007" by All About Jazz Magazine, New York.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">IBRAHIM ELECTRIC — PRESS KIT 2025</div>
+    </div>
+
+    <!-- PAGE 5: Technical Rider -->
+    <div class="page">
+        <div class="section-header">TECHNICAL RIDER</div>
+
+        <div class="rider-section">
+            <div class="rider-title">Hammond Organ</div>
+            <div class="rider-content">
+                <p>Hammond B3 + A100 or C3 with Leslie, Pedals and Bench</p>
+            </div>
+        </div>
+
+        <div class="rider-section">
+            <div class="rider-title">Drums</div>
+            <div class="rider-content">
+                <p>1 snare drum 14" x 5" or 14" x 5.5" or 14" x 6.5"</p>
+                <p>1 floor tom 14" x 14" or 16" x 16" (with legs)</p>
+                <p>1 tom 12" x 10" or 13" x 10"</p>
+                <p>1 bass drum 18" x 14" or 20" x 14"</p>
+                <div class="rider-important">
+                    <strong>Important:</strong> All drumheads (top and bottom/back and front) MUST be white-coated Remo Ambassador.
+                </div>
+            </div>
+        </div>
+
+        <div class="rider-section">
+            <div class="rider-title">Drum Hardware</div>
+            <div class="rider-content">
+                <p>3 cymbal stands • 2 snare drum stands • 1 hi-hat stand</p>
+                <p>1 bass drum pedal (mallet with whole felt, no plastic) • 1 drum chair • 1 carpet (3m x 2m)</p>
+            </div>
+        </div>
+
+        <div class="rider-section">
+            <div class="rider-title">Guitar</div>
+            <div class="rider-content">
+                <p>Fender tube amp: Fender Deluxe, Fender Twin, or Fender Super Reverb</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 30px;">CHANNEL LIST</div>
+
+        <table class="channel-table">
+            <tr><th>CH</th><th>Source</th><th>CH</th><th>Source</th></tr>
+            <tr><td>1</td><td>Bass Drum</td><td>8</td><td>Organ Bottom</td></tr>
+            <tr><td>2</td><td>Snare</td><td>9</td><td>Organ Top L</td></tr>
+            <tr><td>3</td><td>Tom 1</td><td>10</td><td>Organ Top R</td></tr>
+            <tr><td>4</td><td>Tom 2 (Floor)</td><td>11</td><td>Guitar</td></tr>
+            <tr><td>5</td><td>Hi-Hat</td><td>12</td><td>Guitar Line (bass pedal)</td></tr>
+            <tr><td>6</td><td>Overhead L</td><td>13</td><td>Guitar Vocal (speak)</td></tr>
+            <tr><td>7</td><td>Overhead R</td><td></td><td></td></tr>
+        </table>
+
+        <p style="margin-top: 15px; font-size: 9px; color: #888;">Microphone choice is at the sound engineer's discretion.</p>
+
+        <div class="page-footer">IBRAHIM ELECTRIC — PRESS KIT 2025</div>
+    </div>
+
+    <!-- PAGE 6: Hospitality Rider -->
+    <div class="page">
+        <div class="section-header">HOSPITALITY RIDER</div>
+
+        <div class="two-col">
+            <div>
+                <div class="rider-section">
+                    <div class="rider-title">Accommodation</div>
+                    <div class="rider-content">
+                        <p>3 single hotel rooms including breakfast</p>
+                        <p>Minimum 3-star hotels only</p>
+                        <p>Walking distance to venue</p>
+                    </div>
+                </div>
+
+                <div class="rider-section">
+                    <div class="rider-title">Dressing Room</div>
+                    <div class="rider-content">
+                        <p>Spacious, pleasant, lockable room close to stage</p>
+                        <p>Toilet adjacent to dressing room (required)</p>
+                        <p>Shower access if possible</p>
+                    </div>
+                </div>
+
+                <div class="rider-section">
+                    <div class="rider-title">On Arrival</div>
+                    <div class="rider-content">
+                        <p>Soft drinks, water, coffee, tea, milk</p>
+                        <p>Apple juice</p>
+                        <p>Potato chips, nuts, fresh fruit</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="rider-section">
+                    <div class="rider-title">In Dressing Room</div>
+                    <div class="rider-content" style="font-size: 9px;">
+                        <p style="color: #FF8C00; margin-bottom: 8px;">Minimum 1 hour before concert</p>
+                        <p>6 bottles water (still & sparkling)</p>
+                        <p>Apple juice</p>
+                        <p>6 soft drinks</p>
+                        <p>6 beers</p>
+                        <p>1 bottle red wine</p>
+                        <p>1 bottle dark rum</p>
+                        <p>3 white towels</p>
+                        <p>Fruit, cheese platter with crackers, chips, candy</p>
+                    </div>
+                </div>
+
+                <div class="rider-section">
+                    <div class="rider-title">Warm Meal</div>
+                    <div class="rider-content">
+                        <p>Light hot cooked meal with vegetables and salad</p>
+                        <p>No junk food, pizzas, or burgers please</p>
+                        <p>Serve latest 90 min before show, or after show</p>
+                        <div class="rider-important">
+                            <strong>Dietary:</strong> 1 vegetarian, 2 omnivores (no seafood)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rider-section" style="margin-top: 30px;">
+            <div class="rider-title">Day-of-Show Contacts</div>
+            <div class="rider-content">
+                <p>Niclas Knudsen: +45 20 61 54 61</p>
+                <p>Stefan Pasborg: +45 26 83 84 56</p>
+                <p>Jeppe Tuxen: +45 60 76 06 05</p>
+            </div>
+        </div>
+
+        <div class="rider-section">
+            <div class="rider-title">Production Notes</div>
+            <div class="rider-content">
+                <p>Ibrahim Electric does not travel with a sound engineer. Please provide a qualified engineer for setup and show.</p>
+                <p>2 helpers required for load in & load out.</p>
+            </div>
+        </div>
+
+        <div class="page-footer">IBRAHIM ELECTRIC — PRESS KIT 2025</div>
+    </div>
+
+    <!-- PAGE 7: Contact -->
+    <div class="page" style="display: flex; flex-direction: column; justify-content: center;">
+        <div class="contact-section">
+            <div class="contact-logo">IBRAHIM ELECTRIC</div>
+
+            <div class="contact-item">
+                <div class="contact-label">General Inquiries</div>
+                <div class="contact-value"><a href="mailto:info@ibrahimelectric.com">info@ibrahimelectric.com</a></div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Website</div>
+                <div class="contact-value"><a href="https://www.ibrahimelectric.com">www.ibrahimelectric.com</a></div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Instagram</div>
+                <div class="contact-value"><a href="https://www.instagram.com/ibrahim_electric/">@ibrahim_electric</a></div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Facebook</div>
+                <div class="contact-value"><a href="http://www.facebook.com/131676340218233">Ibrahim Electric</a></div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Music</div>
+                <div class="contact-value"><a href="https://sleeve.fm/artists/ibrahimelectric">sleeve.fm/artists/ibrahimelectric</a></div>
+            </div>
+
+            <div style="margin-top: 60px; font-size: 10px; color: #666;">
+                Thank you for your interest in Ibrahim Electric.<br>
+                We look forward to an excellent collaboration.
+            </div>
+        </div>
+
+        <div class="page-footer">IBRAHIM ELECTRIC — PRESS KIT 2025</div>
+    </div>
+
+</body>
+</html>

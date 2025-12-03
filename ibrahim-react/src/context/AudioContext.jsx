@@ -136,6 +136,7 @@ export const AudioProvider = ({ children }) => {
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [isAudioUnlocked, setIsAudioUnlocked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef(new Audio());
 
   const currentTrack = tracks[currentTrackIndex];
@@ -195,10 +196,12 @@ export const AudioProvider = ({ children }) => {
     audio.pause();
 
     setCurrentTrackIndex(index);
+    setIsLoading(true);
     audio.src = track.src;
 
     // Wait for the audio to be ready before playing
     const handleCanPlay = () => {
+      setIsLoading(false);
       audio.play().then(() => {
         setIsPlayerVisible(true);
         setIsPlayerExpanded(true);
@@ -207,11 +210,18 @@ export const AudioProvider = ({ children }) => {
         trackAudioPlayer('play', track.title);
       }).catch(error => {
         console.error('Error playing audio:', error);
+        setIsLoading(false);
       });
       audio.removeEventListener('canplay', handleCanPlay);
     };
 
+    const handleError = () => {
+      setIsLoading(false);
+      audio.removeEventListener('error', handleError);
+    };
+
     audio.addEventListener('canplay', handleCanPlay);
+    audio.addEventListener('error', handleError);
     audio.load();
   };
 
@@ -281,20 +291,31 @@ export const AudioProvider = ({ children }) => {
 
   const playAudio = () => {
     const audio = audioRef.current;
+    setIsLoading(true);
+
     // iOS requires loading the audio before playing
     if (audio.readyState < 2) {
       audio.load();
     }
 
+    const handleCanPlayForToggle = () => {
+      setIsLoading(false);
+      audio.removeEventListener('canplay', handleCanPlayForToggle);
+    };
+
+    audio.addEventListener('canplay', handleCanPlayForToggle);
+
     audio.play()
       .then(() => {
         setIsPlayerVisible(true);
         setIsAudioUnlocked(true);
+        setIsLoading(false);
         // Track play in Google Analytics
         trackAudioPlayer('play', currentTrack.title);
       })
       .catch(error => {
         console.error('Error playing audio:', error);
+        setIsLoading(false);
         // On iOS, we might need to wait for user interaction
         if (error.name === 'NotAllowedError' || error.name === 'NotSupportedError') {
           console.log('Audio playback requires user interaction on iOS - please tap the vinyl again');
@@ -328,6 +349,7 @@ export const AudioProvider = ({ children }) => {
     currentTime,
     duration,
     volume,
+    isLoading,
     audioRef,
     playTrack,
     togglePlay,
