@@ -141,13 +141,43 @@ export const AudioProvider = ({ children }) => {
   const currentTrack = tracks[currentTrackIndex];
 
   const playNext = () => {
-    const nextIndex = (currentTrackIndex + 1) % tracks.length;
-    playTrack(nextIndex);
+    const now = new Date();
+    let nextIndex = (currentTrackIndex + 1) % tracks.length;
+    let attempts = 0;
+
+    // Find next released track, skip unreleased ones
+    while (attempts < tracks.length) {
+      const track = tracks[nextIndex];
+      if (!track.releaseDate || track.releaseDate <= now) {
+        playTrack(nextIndex);
+        return;
+      }
+      nextIndex = (nextIndex + 1) % tracks.length;
+      attempts++;
+    }
+
+    // All tracks unreleased or back to same track, play first released track
+    playTrack(currentTrackIndex);
   };
 
   const playPrevious = () => {
-    const prevIndex = currentTrackIndex - 1 >= 0 ? currentTrackIndex - 1 : tracks.length - 1;
-    playTrack(prevIndex);
+    const now = new Date();
+    let prevIndex = currentTrackIndex - 1 >= 0 ? currentTrackIndex - 1 : tracks.length - 1;
+    let attempts = 0;
+
+    // Find previous released track, skip unreleased ones
+    while (attempts < tracks.length) {
+      const track = tracks[prevIndex];
+      if (!track.releaseDate || track.releaseDate <= now) {
+        playTrack(prevIndex);
+        return;
+      }
+      prevIndex = prevIndex - 1 >= 0 ? prevIndex - 1 : tracks.length - 1;
+      attempts++;
+    }
+
+    // All tracks unreleased or back to same track, stay on current
+    playTrack(currentTrackIndex);
   };
 
   const playTrack = (index) => {
