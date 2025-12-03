@@ -8,7 +8,9 @@
     "build": "vite build",
     "postbuild": "node prerender.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "images:generate": "node scripts/generate-responsive-images.js",
+    "prebuild": "npm run images:generate"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -27,8 +29,10 @@
     "globals": "^16.4.0",
     "postcss": "^8.5.6",
     "puppeteer": "^24.31.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.18",
     "vite": "^7.1.7",
+    "vite-plugin-image-optimizer": "^2.0.3",
     "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-pwa": "^1.1.0",
     "workbox-window": "^7.4.0"
