@@ -712,38 +712,6 @@ nav a:hover {
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Expand icon button */
-.expand-icon {
-  position: absolute;
-  left: -8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 140, 0, 0.5);
-  color: var(--accent-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: all 0.3s ease;
-  z-index: 3;
-}
-
-.expand-icon:hover {
-  opacity: 1;
-  background: rgba(255, 140, 0, 0.2);
-  border-color: var(--accent-color);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.expand-icon:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
 .vinyl-record {
   animation: spin 1.8s linear infinite;
   animation-play-state: paused;
@@ -831,17 +799,6 @@ nav a:hover {
   }
 
   .progress-bar::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-  }
-
-  .expand-icon {
-    width: 28px;
-    height: 28px;
-    left: -10px;
-  }
-
-  .expand-icon svg {
     width: 16px;
     height: 16px;
   }
