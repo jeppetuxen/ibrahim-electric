@@ -48,7 +48,7 @@ deploy: build
 		export IBRAHIM_SSH_PASS; \
 	fi; \
 	if command -v sshpass >/dev/null 2>&1; then \
-		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='music' --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
+		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
 		echo "Deployment complete!"; \
 		echo "🧹 Purging server cache..."; \
 		sshpass -p "$$IBRAHIM_SSH_PASS" ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
@@ -56,7 +56,7 @@ deploy: build
 	else \
 		echo "⚠️  sshpass not installed. Install with: brew install hudochenkov/sshpass/sshpass"; \
 		echo "Falling back to manual password entry..."; \
-		rsync -avz --delete --exclude='music' --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
+		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
 		echo "Deployment complete!"; \
 		echo "🧹 Purging server cache..."; \
 		ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
@@ -78,7 +78,7 @@ deploy-only:
 		export IBRAHIM_SSH_PASS; \
 	fi; \
 	if command -v sshpass >/dev/null 2>&1; then \
-		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='music' --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
+		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
 		echo "Deployment complete!"; \
 		echo "🧹 Purging server cache..."; \
 		sshpass -p "$$IBRAHIM_SSH_PASS" ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
@@ -86,7 +86,7 @@ deploy-only:
 	else \
 		echo "⚠️  sshpass not installed. Install with: brew install hudochenkov/sshpass/sshpass"; \
 		echo "Falling back to manual password entry..."; \
-		rsync -avz --delete --exclude='music' --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
+		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
 		echo "Deployment complete!"; \
 		echo "🧹 Purging server cache..."; \
 		ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
@@ -114,11 +114,11 @@ dry-run: build
 		export IBRAHIM_SSH_PASS; \
 	fi; \
 	if command -v sshpass >/dev/null 2>&1; then \
-		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='music' --exclude='press_files' --exclude='press_material' --exclude='videos' --dry-run --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
+		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --dry-run --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
 	else \
 		echo "⚠️  sshpass not installed. Install with: brew install hudochenkov/sshpass/sshpass"; \
 		echo "Falling back to manual password entry..."; \
-		rsync -avz --delete --exclude='music' --exclude='press_files' --exclude='press_material' --exclude='videos' --dry-run --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
+		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --dry-run --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
 	fi
 
 # SSH into the server
