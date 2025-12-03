@@ -744,12 +744,13 @@ nav a:hover {
   transform: translateY(-50%) scale(0.95);
 }
 
-.vinyl-record.playing {
+.vinyl-record {
   animation: spin 1.8s linear infinite;
+  animation-play-state: paused;
 }
 
-.vinyl-record.paused {
-  animation-play-state: paused;
+.vinyl-record.playing {
+  animation-play-state: running;
 }
 
 /* Mobile adjustments */
@@ -779,18 +780,8 @@ nav a:hover {
     justify-content: space-between;
   }
 
-  .player-track-info {
-    margin-bottom: 10px;
-  }
-
   .player-track-info h4 {
-    font-size: 15px;
-    line-height: 1.3;
-  }
-
-  .player-track-info p {
-    font-size: 13px;
-    margin-top: 4px;
+    font-size: 12px;
   }
 
   .vinyl-container {
