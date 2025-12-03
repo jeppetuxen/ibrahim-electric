@@ -28,41 +28,20 @@ const StickyAudioPlayer = () => {
   };
 
   const handleVinylClick = () => {
-    if (!isPlayerExpanded) {
-      // If collapsed, expand and play
-      toggleExpanded();
-      if (!isPlaying) {
-        togglePlay();
-      }
-    } else {
-      // If expanded, just toggle expanded state
-      toggleExpanded();
-    }
+    // Simply toggle play/pause when vinyl is clicked
+    togglePlay();
+  };
+
+  const handleExpandClick = (e) => {
+    // Toggle expanded state when clicking the controls area
+    e.stopPropagation();
+    toggleExpanded();
   };
 
   if (!isPlayerVisible) return null;
 
   return (
     <div className={`sticky-player ${isPlayerExpanded ? 'expanded' : 'collapsed'}`}>
-      {/* Vinyl record (always visible, click to toggle) */}
-      <div
-        className="vinyl-container"
-        onClick={handleVinylClick}
-      >
-        <div className={`vinyl-record ${isPlaying ? 'playing' : 'paused'}`}>
-          {currentTrack.coverArt && (
-            <img
-              src={currentTrack.coverArt}
-              alt={`${currentTrack.album} cover`}
-              className="vinyl-cover-art"
-              onError={(e) => {
-                e.target.style.display = 'none';
-              }}
-            />
-          )}
-        </div>
-      </div>
-
       {/* Player controls (hidden when collapsed) */}
       <div className="player-controls">
         {/* Track Title and Album */}
@@ -119,6 +98,39 @@ const StickyAudioPlayer = () => {
             </svg>
           </button>
         </div>
+      </div>
+
+      {/* Vinyl record (always visible, click to toggle play/pause) */}
+      <div className="vinyl-container">
+        <div
+          className={`vinyl-record ${isPlaying ? 'playing' : 'paused'}`}
+          onClick={handleVinylClick}
+        >
+          {currentTrack.coverArt && (
+            <img
+              src={currentTrack.coverArt}
+              alt={`${currentTrack.album} cover`}
+              className="vinyl-cover-art"
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
+          )}
+        </div>
+        {/* Expand icon */}
+        <button
+          onClick={handleExpandClick}
+          className="expand-icon"
+          aria-label={isPlayerExpanded ? "Collapse player" : "Expand player"}
+        >
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            {isPlayerExpanded ? (
+              <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+            ) : (
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            )}
+          </svg>
+        </button>
       </div>
     </div>
   );

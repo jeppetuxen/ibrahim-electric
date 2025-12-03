@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useRef, useEffect } from 'react';
+import { trackAudioPlayer } from '../utils/analytics';
 
 const AudioContext = createContext();
 
@@ -129,7 +130,7 @@ const tracks = [
 export const AudioProvider = ({ children }) => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isPlayerVisible, setIsPlayerVisible] = useState(false);
+  const [isPlayerVisible, setIsPlayerVisible] = useState(true);
   const [isPlayerExpanded, setIsPlayerExpanded] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -172,6 +173,8 @@ export const AudioProvider = ({ children }) => {
         setIsPlayerVisible(true);
         setIsPlayerExpanded(true);
         setIsPlaying(true);
+        // Track play in Google Analytics
+        trackAudioPlayer('play', track.title);
       }).catch(error => {
         console.error('Error playing audio:', error);
       });
@@ -222,25 +225,51 @@ export const AudioProvider = ({ children }) => {
   const togglePlay = () => {
     const audio = audioRef.current;
     if (audio.paused) {
-      // iOS requires loading the audio before playing
-      if (audio.readyState < 2) {
-        audio.load();
-      }
-
-      audio.play()
-        .then(() => {
-          setIsPlayerVisible(true);
-        })
-        .catch(error => {
-          console.error('Error playing audio:', error);
-          // On iOS, we might need to wait for user interaction
-          if (error.name === 'NotAllowedError' || error.name === 'NotSupportedError') {
-            console.log('Audio playback requires user interaction on iOS');
-          }
+      // iOS unlock: Try to play a silent sound first to unlock audio context
+      if (!isAudioUnlocked) {
+        audio.volume = 0;
+        audio.play().then(() => {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.volume = volume;
+          setIsAudioUnlocked(true);
+          // Now try playing for real
+          playAudio();
+        }).catch(() => {
+          // Still locked, try loading and playing normally
+          playAudio();
         });
+      } else {
+        playAudio();
+      }
     } else {
       audio.pause();
+      // Track pause in Google Analytics
+      trackAudioPlayer('pause', currentTrack.title);
     }
+  };
+
+  const playAudio = () => {
+    const audio = audioRef.current;
+    // iOS requires loading the audio before playing
+    if (audio.readyState < 2) {
+      audio.load();
+    }
+
+    audio.play()
+      .then(() => {
+        setIsPlayerVisible(true);
+        setIsAudioUnlocked(true);
+        // Track play in Google Analytics
+        trackAudioPlayer('play', currentTrack.title);
+      })
+      .catch(error => {
+        console.error('Error playing audio:', error);
+        // On iOS, we might need to wait for user interaction
+        if (error.name === 'NotAllowedError' || error.name === 'NotSupportedError') {
+          console.log('Audio playback requires user interaction on iOS - please tap the vinyl again');
+        }
+      });
   };
 
   const toggleExpanded = () => {
