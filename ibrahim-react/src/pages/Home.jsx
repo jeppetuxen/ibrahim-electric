@@ -283,8 +283,10 @@ const Home = () => {
                   const tracksWithoutDates = tracks.map((track, index) => ({ track, index }))
                     .filter(({ track }) => !track.releaseDate);
 
-                  // Get released tracks with dates (singles that are out)
-                  const releasedSingles = tracksWithDates.filter(({ track }) => track.releaseDate <= now);
+                  // Get released tracks with dates (singles that are out) - newest first
+                  const releasedSingles = tracksWithDates
+                    .filter(({ track }) => track.releaseDate <= now)
+                    .sort((a, b) => b.track.releaseDate - a.track.releaseDate);
 
                   // Get unreleased tracks
                   const upcomingTracks = tracksWithDates

@@ -561,6 +561,7 @@ nav a:hover {
   opacity: 1;
   width: auto;
   transform: translateX(0);
+  overflow: visible;
 }
 
 .player-track-info {
