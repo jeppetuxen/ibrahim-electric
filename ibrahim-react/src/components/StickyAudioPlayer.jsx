@@ -1,4 +1,5 @@
 import { useAudio } from '../context/AudioContext';
+import { useEffect, useRef } from 'react';
 
 const StickyAudioPlayer = () => {
   const {
@@ -16,6 +17,23 @@ const StickyAudioPlayer = () => {
     seek,
   } = useAudio();
 
+  // Auto-collapse on scroll for mobile
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only on mobile (max-width: 767px) and when expanded
+      if (window.innerWidth <= 767 && isPlayerExpanded) {
+        // Collapse immediately on scroll
+        toggleExpanded();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isPlayerExpanded, toggleExpanded]);
+
   const formatTime = (time) => {
     if (isNaN(time)) return '0:00';
     const minutes = Math.floor(time / 60);
@@ -29,11 +47,13 @@ const StickyAudioPlayer = () => {
   };
 
   const handleVinylClick = () => {
-    // Expand and start playing on vinyl click
     if (!isPlayerExpanded) {
+      // If collapsed, just expand (don't stop playback)
       toggleExpanded();
+    } else {
+      // If expanded, toggle playback
+      togglePlay();
     }
-    togglePlay();
   };
 
   if (!isPlayerVisible) return null;

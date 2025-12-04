@@ -264,14 +264,14 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <img src="/images/1500x1500_300dpi.jpg" alt="Album Cover" className="w-full h-full object-cover opacity-30" />
         </div>
-        <div className="relative z-10 container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-black bg-opacity-90 p-8 md:p-12 rounded-xl shadow-2xl backdrop-blur-sm">
+        <div className="relative z-10 container mx-auto px-2 md:px-6">
+          <div className="max-w-4xl mx-auto bg-black bg-opacity-90 p-2 md:p-12 rounded-xl shadow-2xl backdrop-blur-sm">
             <h2 className="text-4xl md:text-6xl font-heading text-center mb-12 tracking-wide text-accent-orange">
               Music
             </h2>
 
             {/* Track List */}
-            <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
+            <div className="bg-gray-900 p-1.5 md:p-6 rounded-lg border border-gray-800">
               <h4 className="text-xl font-heading mb-4 text-gray-300 tracking-wide">Select a Track:</h4>
               <div className="space-y-2">
                 {(() => {
