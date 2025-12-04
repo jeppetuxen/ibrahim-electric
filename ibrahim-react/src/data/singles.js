@@ -43,7 +43,14 @@ export const singlesData = {
     title: 'Cheyenne',
     releaseDate: new Date('2025-12-04'),
     artwork: '/images/fast-fire-cover.png',
-    platforms: []
+    platforms: [
+      createPlatform('spotify', 'https://open.spotify.com/track/6SiFYofJ4NiGz84TjJ7XT8'),
+      createPlatform('appleMusic', 'https://music.apple.com/dk/album/cheyenne/1855265412'),
+      createPlatform('deezer', 'https://www.deezer.com/en/album/859775412'),
+      createPlatform('tidal', 'https://tidal.com/album/475273175/track/475273176'),
+      createPlatform('amazon', 'https://www.amazon.com/music/player/albums/B0G2Z5RCRB'),
+      createPlatform('youtube', 'https://www.youtube.com/watch?v=2jyE6vM6Cgw'),
+    ]
   },
   'flambino': {
     title: 'Flambino',
