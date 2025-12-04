@@ -69,7 +69,9 @@ const Singles = () => {
 
         {/* Singles Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {Object.entries(singlesData).map(([key, single]) => {
+          {Object.entries(singlesData)
+            .sort(([, a], [, b]) => b.releaseDate - a.releaseDate)
+            .map(([key, single]) => {
             const singleReleased = single.releaseDate <= now;
             const CardWrapper = singleReleased ? Link : 'div';
             const cardProps = singleReleased ? { to: `/singles/${key}` } : {};
