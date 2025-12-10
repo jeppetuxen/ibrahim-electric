@@ -13,21 +13,12 @@ export const useAudio = () => {
 
 const tracks = [
   {
-    title: 'FAST FIRE',
+    title: 'FLAMBINO',
     album: 'Fast Fire',
     year: '2025',
-    src: '/music/fast-fire/fast-fire.mp3',
+    src: '/music/fast-fire/flambino.mp3',
     coverArt: '/images/fast-fire-cover.jpg',
-    releaseDate: new Date('2025-11-28'),
-    isSingle: true
-  },
-  {
-    title: 'SHUFFLE CORN',
-    album: 'Fast Fire',
-    year: '2025',
-    src: '/music/fast-fire/shuffle-corn.mp3',
-    coverArt: '/images/fast-fire-cover.jpg',
-    releaseDate: new Date('2025-11-28'),
+    releaseDate: new Date('2025-12-10'),
     isSingle: true
   },
   {
@@ -40,12 +31,21 @@ const tracks = [
     isSingle: true
   },
   {
-    title: 'FLAMBINO',
+    title: 'SHUFFLE CORN',
     album: 'Fast Fire',
     year: '2025',
-    src: '/music/fast-fire/flambino.mp3',
+    src: '/music/fast-fire/shuffle-corn.mp3',
     coverArt: '/images/fast-fire-cover.jpg',
-    releaseDate: new Date('2025-12-10'),
+    releaseDate: new Date('2025-11-28'),
+    isSingle: true
+  },
+  {
+    title: 'FAST FIRE',
+    album: 'Fast Fire',
+    year: '2025',
+    src: '/music/fast-fire/fast-fire.mp3',
+    coverArt: '/images/fast-fire-cover.jpg',
+    releaseDate: new Date('2025-11-28'),
     isSingle: true
   },
   {
