@@ -123,14 +123,14 @@ const Home = () => {
 
                 {/* Call to Action Buttons */}
                 <div className="space-y-4">
-                  {/* Vinyl Preorder - Primary CTA */}
+                  {/* Vinyl Purchase - Primary CTA */}
                   <a
                     href={vinylUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-gradient-to-r from-accent-orange to-accent-amber text-white px-8 py-4 rounded-full text-lg font-bold btn-modern transition-all duration-300 hover:scale-105 hover:shadow-2xl text-center"
                   >
-                    Preorder Vinyl Now
+                    Order Vinyl Now
                   </a>
 
                   {/* Singles */}

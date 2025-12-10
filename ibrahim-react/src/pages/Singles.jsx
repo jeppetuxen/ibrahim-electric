@@ -29,7 +29,7 @@ const Singles = () => {
           Singles
         </h2>
 
-        {/* Vinyl Preorder CTA - Compact */}
+        {/* Vinyl Purchase CTA - Compact */}
         <div className="mb-12">
           <div className="bg-gradient-to-br from-accent-orange via-accent-amber to-yellow-500 p-1 rounded-xl shadow-2xl max-w-2xl mx-auto">
             <div className="bg-black p-6 md:p-8 rounded-xl">
@@ -46,10 +46,10 @@ const Singles = () => {
                     Get the Real Thing
                   </h3>
                   <p className="text-gray-300 mb-1">
-                    Vinyl Available for Preorder
+                    Vinyl Available Now
                   </p>
                   <p className="text-gray-400 text-sm">
-                    Release Date: December 6, 2025
+                    Released: December 6, 2025
                   </p>
                 </div>
                 <div>
@@ -59,7 +59,7 @@ const Singles = () => {
                     rel="noopener noreferrer"
                     className="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white text-lg font-bold px-8 py-4 rounded-full btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl whitespace-nowrap"
                   >
-                    PREORDER VINYL
+                    ORDER VINYL
                   </a>
                 </div>
               </div>
