@@ -56,7 +56,14 @@ export const singlesData = {
     title: 'Flambino',
     releaseDate: new Date('2025-12-10'),
     artwork: '/images/fast-fire-cover.png',
-    platforms: []
+    platforms: [
+      createPlatform('spotify', 'https://open.spotify.com/track/307aGgGAePZUjcMUIIjxcn'),
+      createPlatform('appleMusic', 'https://music.apple.com/dk/album/flambino/1855232292'),
+      createPlatform('deezer', 'https://www.deezer.com/en/album/859775552'),
+      createPlatform('tidal', 'https://tidal.com/album/475271363/track/475271365'),
+      createPlatform('amazon', 'https://www.amazon.com/music/player/albums/B0G2ZP2RV3'),
+      createPlatform('youtube', 'https://www.youtube.com/watch?v=YkaavwF-oKE'),
+    ]
   }
 };
 
