@@ -36,7 +36,7 @@ function App() {
             <Route path="/tour" element={<TourDates />} />
             <Route path="/singles" element={<Singles />} />
             <Route path="/singles/:singleId" element={<SinglePage />} />
-            <Route path="/press" element={<Press />} />
+            <Route path="/press/dk" element={<Press />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
