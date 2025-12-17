@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Press = () => {
   useEffect(() => {
@@ -15,51 +16,6 @@ const Press = () => {
     };
   }, []);
 
-  const pressKits = [
-    {
-      title: 'Fast Fire Press Kit',
-      description: 'New album press information (2025)',
-      file: '/press/dk/Ibrahim electric - Fast fire.pdf',
-      filename: 'Ibrahim-Electric-Fast-Fire-Press-Kit.pdf'
-    },
-    {
-      title: 'Press Kit 2025',
-      description: 'Complete press information and bio',
-      file: '/press/dk/IBRAHIM ELECTRIC press 2025.pdf',
-      filename: 'Ibrahim-Electric-Press-Kit-2025.pdf'
-    },
-    {
-      title: 'Technical Rider',
-      description: 'Stage setup and technical requirements',
-      file: '/press/dk/Ibrahim Electric Rider + Kanalplan.pdf',
-      filename: 'Ibrahim-Electric-Rider.pdf'
-    },
-    {
-      title: 'DK Press Kit',
-      description: 'Danish press materials',
-      file: '/press/dk/IBRAHIM_ELECTRIC_DK_presse.pdf',
-      filename: 'Ibrahim-Electric-DK-Presse.pdf'
-    }
-  ];
-
-  const pressPhotos = [
-    {
-      src: '/press/dk/_AHL8868.jpg',
-      alt: 'Ibrahim Electric Press Photo 1',
-      filename: 'ibrahim-electric-press-1.jpg'
-    },
-    {
-      src: '/press/dk/_AHL8682bw.jpg',
-      alt: 'Ibrahim Electric Press Photo 2 (B&W)',
-      filename: 'ibrahim-electric-press-2-bw.jpg'
-    },
-    {
-      src: '/press/dk/_AHL8914bw.jpg',
-      alt: 'Ibrahim Electric Press Photo 3 (B&W)',
-      filename: 'ibrahim-electric-press-3-bw.jpg'
-    }
-  ];
-
   return (
     <div className="pt-24 pb-20 min-h-screen bg-black page-transition-enter">
       <div className="container mx-auto px-6">
@@ -68,71 +24,61 @@ const Press = () => {
         </h1>
 
         <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
-          Press materials for bookers, venues, and media. Download high-resolution photos, press kits, and technical information.
+          Press materials for bookers, venues, and media. Choose your region to access press kits, high-resolution photos, and technical information.
         </p>
 
-        {/* Press Kits Downloads */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 pb-4 border-b-2 border-accent-orange">Press Materials</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {pressKits.map((kit, index) => (
-              <div key={index} className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange transition-all duration-300">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-accent-orange rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-heading text-white mb-1">{kit.title}</h3>
-                      <p className="text-gray-400 text-sm">{kit.description}</p>
-                    </div>
-                  </div>
-                  <a
-                    href={kit.file}
-                    download={kit.filename}
-                    className="bg-gradient-to-r from-accent-orange to-accent-amber text-white px-6 py-2 rounded-full font-bold text-sm btn-modern transition-all duration-300 hover:scale-105 text-center"
-                  >
-                    Download PDF
-                  </a>
-                </div>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+          {/* International Press */}
+          <Link
+            to="/press/en"
+            className="group bg-gray-900 p-8 rounded-xl border-2 border-gray-800 hover:border-accent-orange transition-all duration-300 hover:scale-105"
+          >
+            <div className="text-center">
+              <div className="w-20 h-20 bg-accent-orange rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
               </div>
-            ))}
-          </div>
-        </div>
+              <h2 className="text-3xl font-heading text-white mb-3 group-hover:text-accent-orange transition-colors duration-300">
+                INTERNATIONAL
+              </h2>
+              <p className="text-gray-400 mb-6">
+                Press materials in English for international bookers, venues, and media
+              </p>
+              <div className="inline-flex items-center text-accent-orange font-bold">
+                View Materials
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </Link>
 
-        {/* Press Photos */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-8 pb-4 border-b-2 border-accent-orange">Press Photos</h2>
-          <p className="text-gray-400 mb-8">Click on any photo to download the high-resolution version.</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {pressPhotos.map((photo, index) => (
-            <a
-              key={index}
-              href={photo.src}
-              download={photo.filename}
-              className="group relative block overflow-hidden rounded-lg bg-gray-900 border border-gray-800 hover:border-accent-orange transition-all duration-300"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                />
+          {/* Danish Press */}
+          <Link
+            to="/press/dk"
+            className="group bg-gray-900 p-8 rounded-xl border-2 border-gray-800 hover:border-accent-orange transition-all duration-300 hover:scale-105"
+          >
+            <div className="text-center">
+              <div className="w-20 h-20 bg-accent-orange rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/>
+                </svg>
               </div>
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                  <svg className="w-12 h-12 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  <span className="text-white font-medium">Download</span>
-                </div>
+              <h2 className="text-3xl font-heading text-white mb-3 group-hover:text-accent-orange transition-colors duration-300">
+                DENMARK
+              </h2>
+              <p className="text-gray-400 mb-6">
+                Pressematerialer på dansk til danske bookere, spillesteder og medier
+              </p>
+              <div className="inline-flex items-center text-accent-orange font-bold">
+                Se Materialer
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </div>
-            </a>
-          ))}
+            </div>
+          </Link>
         </div>
 
         {/* Contact for Press */}

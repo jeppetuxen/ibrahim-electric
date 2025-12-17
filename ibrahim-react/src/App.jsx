@@ -6,6 +6,8 @@ import StickyAudioPlayer from './components/StickyAudioPlayer';
 import Home from './pages/Home';
 import TourDates from './pages/TourDates';
 import Press from './pages/Press';
+import PressEN from './pages/PressEN';
+import PressDK from './pages/PressDK';
 import Singles from './pages/Singles';
 import SinglePage from './pages/SinglePage';
 import Contact from './pages/Contact';
@@ -36,7 +38,9 @@ function App() {
             <Route path="/tour" element={<TourDates />} />
             <Route path="/singles" element={<Singles />} />
             <Route path="/singles/:singleId" element={<SinglePage />} />
-            <Route path="/press/dk" element={<Press />} />
+            <Route path="/press" element={<Press />} />
+            <Route path="/press/en" element={<PressEN />} />
+            <Route path="/press/dk" element={<PressDK />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
