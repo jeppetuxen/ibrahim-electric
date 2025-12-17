@@ -24,7 +24,7 @@ const Press = () => {
         </h1>
 
         <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
-          Press materials for bookers, venues, and media. Choose your region to access press kits, high-resolution photos, and technical information.
+          Press materials for bookers, venues, and media. Choose your region to access press documents, high-resolution photos, and technical information.
         </p>
 
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
@@ -66,13 +66,13 @@ const Press = () => {
                 </svg>
               </div>
               <h2 className="text-3xl font-heading text-white mb-3 group-hover:text-accent-orange transition-colors duration-300">
-                DENMARK
+                DANISH
               </h2>
               <p className="text-gray-400 mb-6">
-                Pressematerialer på dansk til danske bookere, spillesteder og medier
+                Press materials in Danish for local bookers, venues, and media
               </p>
               <div className="inline-flex items-center text-accent-orange font-bold">
-                Se Materialer
+                View Materials
                 <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

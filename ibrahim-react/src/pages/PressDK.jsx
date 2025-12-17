@@ -64,16 +64,16 @@ const PressDK = () => {
     <div className="pt-24 pb-20 min-h-screen bg-black page-transition-enter">
       <div className="container mx-auto px-6">
         <h1 className="text-5xl md:text-7xl font-heading text-center mb-8 tracking-wide text-accent-orange">
-          PRESS - DENMARK
+          PRESS - DANISH
         </h1>
 
         <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
-          Press materials for Danish bookers, venues, and media. Download high-resolution photos, press kits, and technical information.
+          Press materials for Danish bookers, venues, and media. Download high-resolution photos, press documents, and technical information.
         </p>
 
-        {/* Press Kits Downloads */}
+        {/* Press Documents Downloads */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 pb-4 border-b-2 border-accent-orange">Press Materials</h2>
+          <h2 className="text-3xl font-bold mb-8 pb-4 border-b-2 border-accent-orange">Press Documents</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {pressKits.map((kit, index) => (
               <div key={index} className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange transition-all duration-300">
