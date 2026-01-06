@@ -19,36 +19,36 @@ const PressEN = () => {
     {
       title: 'Fast Fire Press Kit',
       description: 'New album press information (2025)',
-      file: '/press/en/Ibrahim electric - Fast fire.pdf',
+      file: '/press/dk/Ibrahim electric - Fast fire.pdf',
       filename: 'Ibrahim-Electric-Fast-Fire-Press-Kit.pdf'
     },
     {
       title: 'Press Kit 2025',
       description: 'Complete press information and bio',
-      file: '/press/en/IBRAHIM ELECTRIC press 2025.pdf',
+      file: '/press/dk/IBRAHIM ELECTRIC press 2025.pdf',
       filename: 'Ibrahim-Electric-Press-Kit-2025.pdf'
     },
     {
       title: 'Technical Rider',
       description: 'Stage setup and technical requirements',
-      file: '/press/en/Ibrahim Electric Rider + Kanalplan.pdf',
+      file: '/press/dk/Ibrahim Electric Rider + Kanalplan.pdf',
       filename: 'Ibrahim-Electric-Rider.pdf'
     }
   ];
 
   const pressPhotos = [
     {
-      src: '/press/en/_AHL8868.jpg',
+      src: '/press/dk/_AHL8868.jpg',
       alt: 'Ibrahim Electric Press Photo 1',
       filename: 'ibrahim-electric-press-1.jpg'
     },
     {
-      src: '/press/en/_AHL8682bw.jpg',
+      src: '/press/dk/_AHL8682bw.jpg',
       alt: 'Ibrahim Electric Press Photo 2 (B&W)',
       filename: 'ibrahim-electric-press-2-bw.jpg'
     },
     {
-      src: '/press/en/_AHL8914bw.jpg',
+      src: '/press/dk/_AHL8914bw.jpg',
       alt: 'Ibrahim Electric Press Photo 3 (B&W)',
       filename: 'ibrahim-electric-press-3-bw.jpg'
     }
