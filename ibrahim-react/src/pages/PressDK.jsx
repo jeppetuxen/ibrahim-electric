@@ -91,10 +91,11 @@ const PressDK = () => {
                   </div>
                   <a
                     href={kit.file}
-                    download={kit.filename}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-gradient-to-r from-accent-orange to-accent-amber text-white px-6 py-2 rounded-full font-bold text-sm btn-modern transition-all duration-300 hover:scale-105 text-center"
                   >
-                    Download PDF
+                    View PDF
                   </a>
                 </div>
               </div>
