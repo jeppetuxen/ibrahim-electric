@@ -2,19 +2,16 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { registerSW } from 'virtual:pwa-register'
 
-// Register service worker for PWA
-const updateSW = registerSW({
-  onNeedRefresh() {
-    if (confirm('New content available. Reload to update?')) {
-      updateSW(true)
+// Unregister any existing service workers
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    for (const registration of registrations) {
+      registration.unregister();
+      console.log('Service worker unregistered');
     }
-  },
-  onOfflineReady() {
-    console.log('App ready to work offline')
-  },
-})
+  });
+}
 
 const rootElement = document.getElementById('root');
 const app = (
