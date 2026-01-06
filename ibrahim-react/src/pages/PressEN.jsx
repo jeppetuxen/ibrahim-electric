@@ -79,11 +79,10 @@ const PressEN = () => {
                   </div>
                   <a
                     href={kit.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download={kit.filename}
                     className="bg-gradient-to-r from-accent-orange to-accent-amber text-white px-6 py-2 rounded-full font-bold text-sm btn-modern transition-all duration-300 hover:scale-105 text-center"
                   >
-                    View PDF
+                    Download PDF
                   </a>
                 </div>
               </div>
