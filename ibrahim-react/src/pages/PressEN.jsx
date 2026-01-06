@@ -17,12 +17,6 @@ const PressEN = () => {
 
   const pressKits = [
     {
-      title: 'Fast Fire Press Kit',
-      description: 'New album press information (2025)',
-      file: '/press/dk/Ibrahim electric - Fast fire.pdf',
-      filename: 'Ibrahim-Electric-Fast-Fire-Press-Kit.pdf'
-    },
-    {
       title: 'Press Kit 2025',
       description: 'Complete press information and bio',
       file: '/press/dk/IBRAHIM ELECTRIC press 2025.pdf',
