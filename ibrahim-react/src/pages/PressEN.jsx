@@ -19,13 +19,13 @@ const PressEN = () => {
     {
       title: 'Press Kit 2025',
       description: 'Complete press information and bio',
-      file: '/press/dk/IBRAHIM%20ELECTRIC%20press%202025.pdf',
+      file: '/press/dk/IBRAHIM ELECTRIC press 2025.pdf',
       filename: 'Ibrahim-Electric-Press-Kit-2025.pdf'
     },
     {
       title: 'Technical Rider',
       description: 'Stage setup and technical requirements',
-      file: '/press/dk/Ibrahim%20Electric%20Rider%20%2B%20Kanalplan.pdf',
+      file: '/press/dk/Ibrahim Electric Rider + Kanalplan.pdf',
       filename: 'Ibrahim-Electric-Rider.pdf'
     }
   ];

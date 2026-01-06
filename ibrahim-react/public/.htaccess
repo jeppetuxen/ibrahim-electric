@@ -1,9 +1,10 @@
-# Audio file MIME types for iOS compatibility
+# Audio and document MIME types for iOS compatibility
 <IfModule mod_mime.c>
   AddType audio/mpeg .mp3
   AddType audio/mp4 .m4a
   AddType audio/ogg .ogg
   AddType audio/wav .wav
+  AddType application/pdf .pdf
 </IfModule>
 
 # Enable partial content support (required for iOS audio seeking)
@@ -29,6 +30,12 @@
   # Images - medium cache (30 days)
   <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
     Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+
+  # PDF files - medium cache (30 days)
+  <FilesMatch "\.pdf$">
+    Header set Cache-Control "public, max-age=2592000"
+    Header set Content-Type "application/pdf"
   </FilesMatch>
 </IfModule>
 
