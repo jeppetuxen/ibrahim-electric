@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAudio } from '../context/AudioContext';
 import Carousel from '../components/Carousel';
+import HeroCarousel from '../components/HeroCarousel';
+import { trackHeroCtaClick, trackTicketClick, trackNavigation } from '../utils/analytics';
 
 const Home = () => {
   const { tracks, playTrack, currentTrackIndex, isPlaying, isLoading } = useAudio();
@@ -38,10 +40,85 @@ const Home = () => {
     }
   }, []);
 
-  const introImages = [
-    '/images/front/cropped2025.jpg',
-    '/images/front/Ibreahim+Electric+505.jpg',
-    '/images/front/press-4.jpg',
+  // Hero slides with different content for each
+  const heroSlides = [
+    {
+      image: '/images/poster_republique.jpg',
+      alt: 'Ibrahim Electric at Copenhagen Jazz Festival',
+      content: (
+        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center">
+          <span className="inline-block bg-accent-orange text-black px-6 py-2 rounded-full text-sm md:text-base font-bold mb-8 uppercase tracking-wider">
+            Copenhagen Jazz Festival 2026
+          </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading mb-6 tracking-wide text-white text-center">
+            Ibrahim Electric<br />
+            <span className="text-accent-orange">Theatre Republique</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-200 mb-10 text-center">
+            2 exclusive shows: July 10 & 11, 2026
+          </p>
+          <a
+            href="https://www.republique.dk/forestillinger/ibrahim-electric"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              trackTicketClick('Copenhagen Jazz Festival 2026', 'Theatre Republique', 'https://www.republique.dk/forestillinger/ibrahim-electric');
+              trackHeroCtaClick('Get Tickets Now', 'https://www.republique.dk/forestillinger/ibrahim-electric', 'Republique CPH Jazz');
+            }}
+            className="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-10 py-5 rounded-full text-xl font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl"
+          >
+            Get Tickets Now
+          </a>
+        </div>
+      )
+    },
+    {
+      image: '/images/front/cropped2025.jpg',
+      alt: 'Ibrahim Electric',
+      content: (
+        <blockquote className="text-2xl md:text-4xl lg:text-5xl font-heading font-light leading-relaxed max-w-5xl mx-auto">
+          <p className="mb-6 hover:text-accent-orange transition-colors duration-300">
+            "BETTER THAN VIAGRA" <span className="text-accent-orange">- Information, DK</span>
+          </p>
+          <p className="mb-6 hover:text-accent-orange transition-colors duration-300">
+            "BIG, INTERSTELLAR FUN" <span className="text-accent-orange">- Downbeat Magazine, USA</span>
+          </p>
+          <p className="mb-6 hover:text-accent-orange transition-colors duration-300">
+            "FASTER INTO YOUR BLOOD THAN A GANGES PARASITE" <span className="text-accent-orange">- NYC Jazz Record, USA</span>
+          </p>
+          <p className="hover:text-accent-orange transition-colors duration-300">
+            "CAN YOU SAY 'INVENTIVE'? I KNOW THESE GUYS CAN" <span className="text-accent-orange">- Jazz Times, Canada</span>
+          </p>
+        </blockquote>
+      )
+    },
+    {
+      image: '/images/front/Ibreahim+Electric+505.jpg',
+      alt: 'Ibrahim Electric Live',
+      content: (
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-heading mb-8 tracking-wide text-white">
+            We are<br />
+            <span className="text-accent-orange">Ibrahim Electric</span>
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-200 mb-10">
+            Niclas Knudsen / Guitar<br />
+            Jeppe Tuxen / Hammond B3<br />
+            Stefan Pasborg / Drums
+          </p>
+          <Link
+            to="/tour"
+            onClick={() => {
+              trackHeroCtaClick('See Tour Dates', '/tour', 'Band Intro');
+              trackNavigation('tour-dates');
+            }}
+            className="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-10 py-5 rounded-full text-xl font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl"
+          >
+            See Tour Dates
+          </Link>
+        </div>
+      )
+    }
   ];
 
   const bandImages = [
@@ -56,30 +133,8 @@ const Home = () => {
 
   return (
     <div className="page-transition-enter">
-        {/* Intro Section */}
-        <section id="intro" className="relative min-h-screen flex items-center justify-center pt-20">
-        <div className="absolute inset-0 z-0">
-          <Carousel images={introImages} interval={12000} className="intro-carousel" slideClassName="intro-carousel-slide" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10 opacity-70"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
-        </div>
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <blockquote className="text-2xl md:text-4xl lg:text-5xl font-heading font-light leading-relaxed max-w-5xl mx-auto">
-            <p className="mb-6 animate-fade-in-up opacity-0 hover:text-accent-orange transition-colors duration-300">
-              "BETTER THAN VIAGRA" <span className="text-accent-orange">- Information, DK</span>
-            </p>
-            <p className="mb-6 animate-fade-in-up opacity-0 delay-100 hover:text-accent-orange transition-colors duration-300">
-              "BIG, INTERSTELLAR FUN" <span className="text-accent-orange">- Downbeat Magazine, USA</span>
-            </p>
-            <p className="mb-6 animate-fade-in-up opacity-0 delay-200 hover:text-accent-orange transition-colors duration-300">
-              "FASTER INTO YOUR BLOOD THAN A GANGES PARASITE" <span className="text-accent-orange">– NYC Jazz Record, USA</span>
-            </p>
-            <p className="animate-fade-in-up opacity-0 delay-300 hover:text-accent-orange transition-colors duration-300">
-              "CAN YOU SAY 'INVENTIVE'? I KNOW THESE GUYS CAN" <span className="text-accent-orange">- Jazz Times, Canada</span>
-            </p>
-          </blockquote>
-        </div>
-      </section>
+        {/* Hero Carousel with multiple content slides */}
+        <HeroCarousel slides={heroSlides} interval={12000} />
 
       {/* NEW RELEASE Section */}
       <section id="new-release" className="relative py-32 overflow-hidden">

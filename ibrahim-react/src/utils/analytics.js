@@ -112,3 +112,57 @@ export const trackExternalLink = (url, label) => {
     });
   }
 };
+
+/**
+ * Track hero carousel slide change
+ * @param {number} slideIndex - The slide index (0-based)
+ * @param {string} slideName - Name/description of the slide
+ * @param {string} method - How the slide was changed ('auto', 'indicator_click')
+ */
+export const trackHeroSlideChange = (slideIndex, slideName, method) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'hero_slide_change', {
+      slide_index: slideIndex,
+      slide_name: slideName,
+      method: method,
+      event_category: 'engagement',
+      event_label: `Hero Slide - ${slideName} (${method})`,
+    });
+  }
+};
+
+/**
+ * Track hero CTA click
+ * @param {string} ctaName - Name of the CTA (e.g., 'Get Tickets Now', 'See Tour Dates')
+ * @param {string} destination - The URL or destination
+ * @param {string} slideName - Which slide the CTA is on
+ */
+export const trackHeroCtaClick = (ctaName, destination, slideName) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'hero_cta_click', {
+      cta_name: ctaName,
+      destination: destination,
+      slide_name: slideName,
+      event_category: 'engagement',
+      event_label: `Hero CTA - ${ctaName} - ${slideName}`,
+    });
+  }
+};
+
+/**
+ * Track ticket purchase click
+ * @param {string} event - Event name (e.g., 'Copenhagen Jazz Festival 2026')
+ * @param {string} venue - Venue name
+ * @param {string} url - Ticket URL
+ */
+export const trackTicketClick = (event, venue, url) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'ticket_click', {
+      event_name: event,
+      venue: venue,
+      url: url,
+      event_category: 'conversion',
+      event_label: `Ticket - ${venue} - ${event}`,
+    });
+  }
+};
