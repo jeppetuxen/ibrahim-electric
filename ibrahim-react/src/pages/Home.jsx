@@ -45,31 +45,50 @@ const Home = () => {
     {
       image: '/images/poster_republique.jpg',
       alt: 'Ibrahim Electric at Copenhagen Jazz Festival',
+      id: 'republique',
       content: (
-        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center">
-          <span className="inline-block bg-accent-orange text-black px-6 py-2 rounded-full text-sm md:text-base font-bold mb-8 uppercase tracking-wider">
-            Copenhagen Jazz Festival 2026
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading mb-6 tracking-wide text-white text-center">
-            Ibrahim Electric<br />
-            <span className="text-accent-orange">Theatre Republique</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-10 text-center">
-            2 exclusive shows: July 10 & 11, 2026
-          </p>
-          <a
-            href="https://www.republique.dk/forestillinger/ibrahim-electric"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => {
-              trackTicketClick('Copenhagen Jazz Festival 2026', 'Theatre Republique', 'https://www.republique.dk/forestillinger/ibrahim-electric');
-              trackHeroCtaClick('Get Tickets Now', 'https://www.republique.dk/forestillinger/ibrahim-electric', 'Republique CPH Jazz');
-            }}
-            className="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-10 py-5 rounded-full text-xl font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl"
-          >
-            Get Tickets Now
-          </a>
-        </div>
+        <>
+          {/* Desktop content */}
+          <div className="hidden md:flex max-w-4xl mx-auto flex-col items-center justify-center">
+            <span className="inline-block bg-accent-orange text-black px-6 py-2 rounded-full text-sm md:text-base font-bold mb-8 uppercase tracking-wider">
+              Copenhagen Jazz Festival 2026
+            </span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading mb-6 tracking-wide text-white text-center">
+              Ibrahim Electric<br />
+              <span className="text-accent-orange">Theatre Republique</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-200 mb-10 text-center">
+              2 exclusive shows: July 10 & 11, 2026
+            </p>
+            <a
+              href="https://www.republique.dk/forestillinger/ibrahim-electric"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackTicketClick('Copenhagen Jazz Festival 2026', 'Theatre Republique', 'https://www.republique.dk/forestillinger/ibrahim-electric');
+                trackHeroCtaClick('Get Tickets Now', 'https://www.republique.dk/forestillinger/ibrahim-electric', 'Republique CPH Jazz');
+              }}
+              className="inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-10 py-5 rounded-full text-xl font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl"
+            >
+              Get Tickets Now
+            </a>
+          </div>
+          {/* Mobile content - just button with fade in */}
+          <div className="flex md:hidden items-center justify-center">
+            <a
+              href="https://www.republique.dk/forestillinger/ibrahim-electric"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackTicketClick('Copenhagen Jazz Festival 2026', 'Theatre Republique', 'https://www.republique.dk/forestillinger/ibrahim-electric');
+                trackHeroCtaClick('Get Tickets Now (Mobile)', 'https://www.republique.dk/forestillinger/ibrahim-electric', 'Republique CPH Jazz');
+              }}
+              className="republique-mobile-cta inline-block bg-gradient-to-r from-accent-orange to-accent-amber text-white px-8 py-4 rounded-full text-lg font-bold btn-modern transition-all duration-300 hover:scale-110 hover:shadow-2xl"
+            >
+              Get Tickets
+            </a>
+          </div>
+        </>
       )
     },
     {

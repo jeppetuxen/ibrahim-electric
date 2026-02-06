@@ -40,7 +40,7 @@ const HeroCarousel = ({ slides, interval = 12000 }) => {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`hero-slide ${index === currentIndex ? 'active' : ''}`}
+          className={`hero-slide ${index === currentIndex ? 'active' : ''} ${slide.id ? `hero-slide-${slide.id}` : ''}`}
         >
           {/* Background image */}
           <div className="hero-slide-bg">
