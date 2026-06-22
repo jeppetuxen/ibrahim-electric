@@ -3,7 +3,7 @@
 # SSH configuration (uses environment variables from ~/.profile)
 SSH_HOST = $(IBRAHIM_SSH_HOST)
 SSH_USER = $(IBRAHIM_SSH_USER)
-REMOTE_PATH = /www/
+REMOTE_PATH = webroots/www/
 LOCAL_BUILD = dist/
 BACKUP_DIR = ../www-bck/
 
@@ -48,18 +48,18 @@ deploy: build
 		export IBRAHIM_SSH_PASS; \
 	fi; \
 	if command -v sshpass >/dev/null 2>&1; then \
-		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
-		echo "Deployment complete!"; \
-		echo "🧹 Purging server cache..."; \
-		sshpass -p "$$IBRAHIM_SSH_PASS" ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
+		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH) && \
+		echo "Deployment complete!" && \
+		echo "🧹 Purging server cache..." && \
+		sshpass -p "$$IBRAHIM_SSH_PASS" ssh $(SSH_USER)@$(SSH_HOST) "cache-purge" && \
 		echo "✅ Cache purged successfully!"; \
 	else \
 		echo "⚠️  sshpass not installed. Install with: brew install hudochenkov/sshpass/sshpass"; \
 		echo "Falling back to manual password entry..."; \
-		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
-		echo "Deployment complete!"; \
-		echo "🧹 Purging server cache..."; \
-		ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
+		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH) && \
+		echo "Deployment complete!" && \
+		echo "🧹 Purging server cache..." && \
+		ssh $(SSH_USER)@$(SSH_HOST) "cache-purge" && \
 		echo "✅ Cache purged successfully!"; \
 	fi
 
@@ -78,18 +78,18 @@ deploy-only:
 		export IBRAHIM_SSH_PASS; \
 	fi; \
 	if command -v sshpass >/dev/null 2>&1; then \
-		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
-		echo "Deployment complete!"; \
-		echo "🧹 Purging server cache..."; \
-		sshpass -p "$$IBRAHIM_SSH_PASS" ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
+		sshpass -p "$$IBRAHIM_SSH_PASS" rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH) && \
+		echo "Deployment complete!" && \
+		echo "🧹 Purging server cache..." && \
+		sshpass -p "$$IBRAHIM_SSH_PASS" ssh $(SSH_USER)@$(SSH_HOST) "cache-purge" && \
 		echo "✅ Cache purged successfully!"; \
 	else \
 		echo "⚠️  sshpass not installed. Install with: brew install hudochenkov/sshpass/sshpass"; \
 		echo "Falling back to manual password entry..."; \
-		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH); \
-		echo "Deployment complete!"; \
-		echo "🧹 Purging server cache..."; \
-		ssh $(SSH_USER)@$(SSH_HOST) "cache-purge"; \
+		rsync -avz --delete --exclude='press_files' --exclude='press_material' --exclude='videos' --progress $(LOCAL_BUILD) $(SSH_USER)@$(SSH_HOST):$(REMOTE_PATH) && \
+		echo "Deployment complete!" && \
+		echo "🧹 Purging server cache..." && \
+		ssh $(SSH_USER)@$(SSH_HOST) "cache-purge" && \
 		echo "✅ Cache purged successfully!"; \
 	fi
 

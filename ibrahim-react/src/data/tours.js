@@ -68,6 +68,16 @@ export const tourDates = [
     status: 'upcoming'
   },
   {
+    id: 'volumevillage-jul2-2026',
+    date: new Date('2026-07-02'),
+    venue: 'Volume Village',
+    location: 'Aarhus, Denmark',
+    ticketLink: 'https://www.volumevillage.dk/events/ibrahim-electric',
+    soldOut: false,
+    status: 'upcoming',
+    festival: 'Aarhus Jazz Festival'
+  },
+  {
     id: 'pakhuset-jul4-2026',
     date: new Date('2026-07-04'),
     venue: 'Pakhuset',
@@ -97,11 +107,29 @@ export const tourDates = [
     festival: 'Copenhagen Jazz Festival'
   },
   {
+    id: 'ostersojazz-aug1-2026',
+    date: new Date('2026-08-01'),
+    venue: 'Østersøjazz Festival',
+    location: 'Nexø, Bornholm, Denmark',
+    ticketLink: 'https://ostersojazzfestival.dk',
+    soldOut: false,
+    status: 'upcoming'
+  },
+  {
     id: 'avernax-aug8-2026',
     date: new Date('2026-08-08'),
     venue: 'Avernax Festival',
     location: 'Avernakø, Denmark',
     ticketLink: 'https://avernax.dk/2025/12/22/ibrahim-electric-til-avernax-plakaten/',
+    soldOut: false,
+    status: 'upcoming'
+  },
+  {
+    id: 'baezafest-aug26-2026',
+    date: new Date('2026-08-26'),
+    venue: 'Baeza, Spain',
+    location: 'Baeza, Spain',
+    ticketLink: null,
     soldOut: false,
     status: 'upcoming'
   },
