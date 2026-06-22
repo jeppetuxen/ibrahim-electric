@@ -64,7 +64,7 @@ const TourDate = ({ date, venue, location, ticketLink, soldOut = false }) => {
     <div className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-accent-orange transition-all duration-300">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="flex-1">
-          <h3 className="text-xl font-heading text-accent-orange mb-2">{venue}</h3>
+          {venue && <h3 className="text-xl font-heading text-accent-orange mb-2">{venue}</h3>}
           <p className="text-gray-400">{location}</p>
         </div>
         <div className="flex items-center gap-4">

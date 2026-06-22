@@ -1,6 +1,6 @@
 // Centralized contact and social media information
 export const contacts = {
-  email: 'info@ibrahimelectric.com',
+  email: 'mail@ibrahimelectric.com',
 
   social: {
     facebook: {

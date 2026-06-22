@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "images:generate": "node scripts/generate-responsive-images.js",
-    "prebuild": "npm run images:generate"
+    "calendar:generate": "node scripts/generate-calendar.js",
+    "prebuild": "npm run images:generate && npm run calendar:generate"
   },
   "dependencies": {
     "react": "^19.1.1",

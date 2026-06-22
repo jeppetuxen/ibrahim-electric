@@ -1,0 +1,131 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Ibrahim Electric//Tour Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Ibrahim Electric Tour Dates
+X-WR-CALDESC:Live dates for Ibrahim Electric
+BEGIN:VEVENT
+UID:tobaksgaarden-mar27-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260327
+DTEND;VALUE=DATE:20260328
+SUMMARY:Ibrahim Electric @ Tobaksgaarden
+LOCATION:Tobaksgaarden\, Assens\, Denmark
+URL:https://tobaksgaarden.dk/program/ibrahim-electric/
+END:VEVENT
+BEGIN:VEVENT
+UID:radar-apr18-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260418
+DTEND;VALUE=DATE:20260419
+SUMMARY:Ibrahim Electric @ Radar
+LOCATION:Radar\, Aarhus\, Denmark
+URL:https://radarlive.dk/kalender/2026/april/ibrahim-electric/?ytroute=/arrangementer/54266/ibrahim-electric/
+END:VEVENT
+BEGIN:VEVENT
+UID:tapperiet-apr23-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260423
+DTEND;VALUE=DATE:20260424
+SUMMARY:Ibrahim Electric @ Tapperiet
+LOCATION:Tapperiet\, Køge\, Denmark
+URL:https://tapperiet.nu/koncerter/1188-ibrahim-electric-2026
+END:VEVENT
+BEGIN:VEVENT
+UID:dexter-apr24-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260424
+DTEND;VALUE=DATE:20260425
+SUMMARY:Ibrahim Electric @ Dexter
+LOCATION:Dexter\, Odense\, Denmark
+URL:https://dexter.dk/event/ibrahim-electric/
+END:VEVENT
+BEGIN:VEVENT
+UID:studhus-may2-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260502
+DTEND;VALUE=DATE:20260503
+SUMMARY:Ibrahim Electric @ Studenterhuset
+LOCATION:Studenterhuset\, Aalborg\, Denmark
+URL:https://studenterhuset.dk/ibrahim-electric/
+END:VEVENT
+BEGIN:VEVENT
+UID:svendborg-jazz-jun12-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260612
+DTEND;VALUE=DATE:20260613
+SUMMARY:Ibrahim Electric @ Svendborg Jazz
+LOCATION:Svendborg Jazz\, Svendborg\, Denmark
+END:VEVENT
+BEGIN:VEVENT
+UID:trio-kolding-jun13-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:Ibrahim Electric @ Trio
+LOCATION:Trio\, Kolding\, Denmark
+END:VEVENT
+BEGIN:VEVENT
+UID:volumevillage-jul2-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260702
+DTEND;VALUE=DATE:20260703
+SUMMARY:Ibrahim Electric @ Aarhus Jazz Festival
+LOCATION:Volume Village\, Aarhus\, Denmark
+URL:https://www.volumevillage.dk/events/ibrahim-electric
+END:VEVENT
+BEGIN:VEVENT
+UID:pakhuset-jul4-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260704
+DTEND;VALUE=DATE:20260705
+SUMMARY:Ibrahim Electric @ Pakhuset
+LOCATION:Pakhuset\, Nykøbing Sjælland\, Denmark
+URL:https://odsbib.dk/pakhuset-nykobing-sj/arrangementer/musik/ibrahim-electric
+END:VEVENT
+BEGIN:VEVENT
+UID:republique-jul10-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260710
+DTEND;VALUE=DATE:20260711
+SUMMARY:Ibrahim Electric @ Copenhagen Jazz Festival
+LOCATION:Theatre Republique\, Copenhagen\, Denmark
+URL:https://www.republique.dk/forestillinger/ibrahim-electric
+END:VEVENT
+BEGIN:VEVENT
+UID:republique-jul11-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260711
+DTEND;VALUE=DATE:20260712
+SUMMARY:Ibrahim Electric @ Copenhagen Jazz Festival
+LOCATION:Theatre Republique\, Copenhagen\, Denmark
+URL:https://www.republique.dk/forestillinger/ibrahim-electric
+END:VEVENT
+BEGIN:VEVENT
+UID:ostersojazz-aug1-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260801
+DTEND;VALUE=DATE:20260802
+SUMMARY:Ibrahim Electric @ Østersøjazz Festival
+LOCATION:Østersøjazz Festival\, Nexø\, Bornholm\, Denmark
+URL:https://ostersojazzfestival.dk
+END:VEVENT
+BEGIN:VEVENT
+UID:avernax-aug8-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260808
+DTEND;VALUE=DATE:20260809
+SUMMARY:Ibrahim Electric @ Avernax Festival
+LOCATION:Avernax Festival\, Avernakø\, Denmark
+URL:https://avernax.dk/2025/12/22/ibrahim-electric-til-avernax-plakaten/
+END:VEVENT
+BEGIN:VEVENT
+UID:baezafest-aug26-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:Ibrahim Electric @ Baeza\, Spain
+LOCATION:Baeza\, Spain\, Baeza\, Spain
+END:VEVENT
+BEGIN:VEVENT
+UID:gjethuset-sep24-2026@ibrahimelectric.com
+DTSTART;VALUE=DATE:20260924
+DTEND;VALUE=DATE:20260925
+SUMMARY:Ibrahim Electric @ Gjethuset
+LOCATION:Gjethuset\, Frederiksværk\, Denmark
+END:VEVENT
+BEGIN:VEVENT
+UID:flensborg-nov25-2027@ibrahimelectric.com
+DTSTART;VALUE=DATE:20271125
+DTEND;VALUE=DATE:20271126
+SUMMARY:Ibrahim Electric @ Flensborg
+LOCATION:Flensborg\, Flensborg\, Germany
+END:VEVENT
+END:VCALENDAR

@@ -139,10 +139,10 @@ const PressDK = () => {
         <div className="mt-16 text-center">
           <p className="text-gray-400 mb-4">For press inquiries, please contact:</p>
           <a
-            href="mailto:info@ibrahimelectric.com"
+            href="mailto:mail@ibrahimelectric.com"
             className="text-accent-orange hover:text-white transition-colors duration-300 text-lg font-medium"
           >
-            info@ibrahimelectric.com
+            mail@ibrahimelectric.com
           </a>
         </div>
       </div>

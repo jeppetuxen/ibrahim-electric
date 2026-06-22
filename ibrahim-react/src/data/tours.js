@@ -143,8 +143,8 @@ export const tourDates = [
     status: 'upcoming'
   },
   {
-    id: 'flensborg-nov12-2026',
-    date: new Date('2026-11-12'),
+    id: 'flensborg-nov25-2027',
+    date: new Date('2027-11-25'),
     venue: 'Flensborg',
     location: 'Flensborg, Germany',
     ticketLink: null,
