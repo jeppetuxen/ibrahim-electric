@@ -26,6 +26,9 @@ cookies.txt
 www.ibrahimelectric.com/
 one/
 one-bck/
+
+# Server backup mirror (contains large video files, not source)
+www-bck/
 *.gif
 index2.html
 .claude/
